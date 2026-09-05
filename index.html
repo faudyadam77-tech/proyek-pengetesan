@@ -16,10 +16,7 @@
     padding: 20px;
   }
 
-  .container {
-    max-width: 900px;
-    margin: 0 auto;
-  }
+  .container { max-width: 900px; margin: 0 auto; }
 
   /* HEADER */
   .header {
@@ -39,19 +36,9 @@
     height: 6px;
     background: linear-gradient(90deg, #FF6B6B, #FFD93D, #6BCB77, #4D96FF, #FF6B6B);
   }
-  .header h1 {
-    font-size: 2em;
-    color: #2d3436;
-    margin-bottom: 5px;
-  }
-  .header .subtitle {
-    color: #636e72;
-    font-size: 1.1em;
-  }
-  .header .emoji-row {
-    font-size: 2em;
-    margin-top: 10px;
-  }
+  .header h1 { font-size: 2em; color: #2d3436; margin-bottom: 5px; }
+  .header .subtitle { color: #636e72; font-size: 1.1em; }
+  .header .emoji-row { font-size: 2em; margin-top: 10px; }
 
   /* CARD */
   .card {
@@ -91,9 +78,6 @@
     padding: 20px;
     text-align: center;
     transition: all 0.3s ease;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
     background: #fafafa;
   }
   .vocab-card:hover {
@@ -101,8 +85,6 @@
     box-shadow: 0 8px 25px rgba(0,0,0,0.12);
     border-color: #667eea;
   }
-
-  /* GAYA GAMBAR KOSAKATA */
   .vocab-card .vocab-img {
     width: 100%;
     max-width: 180px;
@@ -116,10 +98,7 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     transition: transform 0.3s ease;
   }
-  .vocab-card:hover .vocab-img {
-    transform: scale(1.05);
-  }
-
+  .vocab-card:hover .vocab-img { transform: scale(1.05); }
   .vocab-card .arabic {
     font-family: 'Amiri', serif;
     font-size: 2em;
@@ -143,8 +122,6 @@
     display: inline-block;
     font-weight: 700;
   }
-
-  /* Warna border tiap kartu */
   .vocab-card:nth-child(1) { border-color: #FF6B6B; }
   .vocab-card:nth-child(2) { border-color: #FFD93D; }
   .vocab-card:nth-child(3) { border-color: #6BCB77; }
@@ -152,8 +129,39 @@
   .vocab-card:nth-child(5) { border-color: #FF9FF3; }
   .vocab-card:nth-child(6) { border-color: #54A0FF; }
 
+  /* TOMBOL MULAI SOAL */
+  .start-quiz-wrapper {
+    text-align: center;
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 3px dashed #e0e0e0;
+  }
+  .start-quiz-wrapper p {
+    font-size: 1.1em;
+    color: #636e72;
+    margin-bottom: 15px;
+    font-weight: 600;
+  }
+  .btn-start-quiz {
+    padding: 18px 50px;
+    font-size: 1.3em;
+    font-weight: 800;
+    color: white;
+    background: linear-gradient(135deg, #00b894, #00cec9);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Nunito', sans-serif;
+    box-shadow: 0 5px 15px rgba(0,184,148,0.4);
+  }
+  .btn-start-quiz:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,184,148,0.5);
+  }
+
   /* FORM NAMA */
-  .name-section { text-align: center; }
+  .name-section { display: none; text-align: center; }
   .name-section label {
     display: block;
     font-size: 1.2em;
@@ -176,7 +184,6 @@
   }
   .name-input:focus { border-color: #667eea; }
   .name-input::placeholder { color: #b2bec3; }
-
   .btn-start {
     margin-top: 20px;
     padding: 15px 50px;
@@ -284,7 +291,6 @@
     background: #667eea;
     color: white;
   }
-
   .btn-submit {
     display: block;
     width: 100%;
@@ -374,8 +380,24 @@
     cursor: pointer;
     transition: all 0.3s;
     font-family: 'Nunito', sans-serif;
+    margin-right: 10px;
   }
   .btn-retry:hover { transform: translateY(-3px); }
+
+  .btn-back-material {
+    margin-top: 20px;
+    padding: 15px 40px;
+    font-size: 1.1em;
+    font-weight: 700;
+    color: white;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Nunito', sans-serif;
+  }
+  .btn-back-material:hover { transform: translateY(-3px); }
 
   /* LOADING */
   .loading-overlay {
@@ -433,6 +455,15 @@
     padding: 20px;
     font-size: 0.9em;
   }
+
+  /* ANIMASI TRANSISI */
+  .fade-in {
+    animation: fadeIn 0.5s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 </style>
 </head>
 <body>
@@ -445,10 +476,12 @@
     <div class="emoji-row">✏️ 📏 🖍️ </div>
   </div>
 
-  <!-- MATERI KOSAKATA -->
-  <div class="card">
+  <!-- ============================================ -->
+  <!-- MATERI KOSAKATA (TAMPIL PERTAMA KALI) -->
+  <!-- ============================================ -->
+  <div class="card" id="materialSection">
     <div class="card-title">
-      <span class="icon">📖</span>
+      <span class="icon"></span>
       Kosakata: Alat Tulis (أَدَوَاتُ الْكِتَابَةِ)
     </div>
     <div class="vocab-grid">
@@ -502,9 +535,17 @@
       </div>
 
     </div>
+
+    <!-- TOMBOL MULAI SOAL -->
+    <div class="start-quiz-wrapper">
+      <p>📚 Sudah hafal kosakatanya? Ayo uji kemampuanmu!</p>
+      <button class="btn-start-quiz" onclick="goToQuiz()"> Mengerjakan Soal</button>
+    </div>
   </div>
 
-  <!-- FORM NAMA -->
+  <!-- ============================================ -->
+  <!-- FORM NAMA (MUNCUL SETELAH KLIK SOAL) -->
+  <!-- ============================================ -->
   <div class="card name-section" id="nameSection">
     <div class="card-title" style="justify-content:center;">
       <span class="icon">✍️</span>
@@ -516,7 +557,9 @@
     <button class="btn-start" id="btnStart" onclick="startQuiz()" disabled>🚀 Mulai Mengerjakan!</button>
   </div>
 
+  <!-- ============================================ -->
   <!-- QUIZ -->
+  <!-- ============================================ -->
   <div class="card quiz-section" id="quizSection">
     <div class="card-title">
       <span class="icon"></span>
@@ -530,7 +573,9 @@
     <button class="btn-submit" id="btnSubmit" onclick="submitQuiz()" disabled>✅ Kirim Jawaban</button>
   </div>
 
+  <!-- ============================================ -->
   <!-- HASIL -->
+  <!-- ============================================ -->
   <div class="card result-section" id="resultSection">
     <div class="result-box">
       <div class="result-emoji" id="resultEmoji">🎉</div>
@@ -541,12 +586,15 @@
         Nama: <strong id="resultName">-</strong>
       </div>
       <div class="result-detail" id="resultDetail"></div>
-      <button class="btn-retry" onclick="location.reload()"> Coba Lagi</button>
+      <div style="margin-top:25px;">
+        <button class="btn-back-material" onclick="backToMaterial()">📖 Lihat Materi Lagi</button>
+        <button class="btn-retry" onclick="retryQuiz()">🔄 Coba Lagi</button>
+      </div>
     </div>
   </div>
 
   <div class="footer">
-    📚 Materi Kosakata Bahasa Arab — Alat Tulis | Dibuat untuk Siswa Kelas 2 SD
+     Materi Kosakata Bahasa Arab — Alat Tulis | Dibuat untuk Siswa Kelas 2 SD
   </div>
 </div>
 
@@ -561,7 +609,7 @@
 
 <script>
 // ============================================
-// URL GOOGLE APPS SCRIPT (SUDAH TERHUBUNG)
+// URL GOOGLE APPS SCRIPT
 // ============================================
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby6zIPrT0QdsJyjxt7thYeN76KV6ufNRUgQDnRPsrku6ptMXZuhf6HgiV5EijpEf-1A/exec';
 
@@ -670,13 +718,24 @@ function onAnswer(qIndex) {
 }
 
 // ============================================
-// MULAI KUIS
+// FLOW 1: KLIK "Mengerjakan Soal" → Sembunyikan Materi, Tampilkan Form Nama
+// ============================================
+function goToQuiz() {
+  document.getElementById('materialSection').style.display = 'none';
+  document.getElementById('nameSection').style.display = 'block';
+  document.getElementById('nameSection').classList.add('fade-in');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ============================================
+// FLOW 2: Mulai Kuis
 // ============================================
 function startQuiz() {
   const name = document.getElementById('studentName').value.trim();
   if (!name) return;
   document.getElementById('nameSection').style.display = 'none';
   document.getElementById('quizSection').style.display = 'block';
+  document.getElementById('quizSection').classList.add('fade-in');
   renderQuestions();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -725,6 +784,7 @@ function showResult(name, answers, correct, score) {
   document.getElementById('loadingOverlay').classList.remove('active');
   document.getElementById('quizSection').style.display = 'none';
   document.getElementById('resultSection').style.display = 'block';
+  document.getElementById('resultSection').classList.add('fade-in');
 
   document.getElementById('resultName').textContent = name;
   document.getElementById('resultScore').textContent = score;
@@ -735,7 +795,7 @@ function showResult(name, answers, correct, score) {
   } else if (score >= 60) {
     emoji = '😊'; msg = 'Bagus! Terus Belajar Ya! 💪'; cls = 'good';
   } else {
-    emoji = ''; msg = 'Ayo Belajar Lagi! Kamu Pasti Bisa! 💪'; cls = 'try-again';
+    emoji = '📚'; msg = 'Ayo Belajar Lagi! Kamu Pasti Bisa! '; cls = 'try-again';
   }
   document.getElementById('resultEmoji').textContent = emoji;
   const msgEl = document.getElementById('resultMessage');
@@ -753,6 +813,31 @@ function showResult(name, answers, correct, score) {
   });
   document.getElementById('resultDetail').innerHTML = detailHTML;
 
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ============================================
+// FLOW 3: Kembali ke Materi (dari hasil)
+// ============================================
+function backToMaterial() {
+  document.getElementById('resultSection').style.display = 'none';
+  document.getElementById('materialSection').style.display = 'block';
+  document.getElementById('materialSection').classList.add('fade-in');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ============================================
+// FLOW 4: Coba Lagi (reset quiz, nama tetap)
+// ============================================
+function retryQuiz() {
+  answeredCount = 0;
+  document.getElementById('resultSection').style.display = 'none';
+  document.getElementById('quizSection').style.display = 'block';
+  document.getElementById('quizSection').classList.add('fade-in');
+  document.getElementById('progressText').textContent = '0 dari 10 soal dijawab';
+  document.getElementById('progressFill').style.width = '0%';
+  document.getElementById('btnSubmit').disabled = true;
+  renderQuestions();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
