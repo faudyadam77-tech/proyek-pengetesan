@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎓 Belajar Kosakata Arab - Alat Tulis</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Nunito:wght@400;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* HEADER */
+  .header {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #FF6B6B, #FFD93D, #6BCB77, #4D96FF, #FF6B6B);
+  }
+  .header h1 {
+    font-size: 2em;
+    color: #2d3436;
+    margin-bottom: 5px;
+  }
+  .header .subtitle {
+    color: #636e72;
+    font-size: 1.1em;
+  }
+  .header .emoji-row {
+    font-size: 2em;
+    margin-top: 10px;
+  }
+
+  /* CARD */
+  .card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+  .card-title {
+    font-size: 1.5em;
+    font-weight: 800;
+    color: #2d3436;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .card-title .icon {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    width: 40px; height: 40px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2em;
+  }
+
+  /* KOSAKATA GRID */
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+  }
+  .vocab-card {
+    border: 3px solid #f0f0f0;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    background: #fafafa;
+  }
+  .vocab-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    border-color: #667eea;
+  }
+
+  /* GAYA GAMBAR KOSAKATA */
+  .vocab-card .vocab-img {
+    width: 100%;
+    max-width: 180px;
+    height: 140px;
+    object-fit: contain;
+    margin: 0 auto 12px auto;
+    display: block;
+    border-radius: 12px;
+    background: white;
+    padding: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+  }
+  .vocab-card:hover .vocab-img {
+    transform: scale(1.05);
+  }
+
+  .vocab-card .arabic {
+    font-family: 'Amiri', serif;
+    font-size: 2em;
+    color: #2d3436;
+    direction: rtl;
+    margin-bottom: 5px;
+    font-weight: 700;
+  }
+  .vocab-card .latin {
+    font-size: 0.95em;
+    color: #636e72;
+    font-style: italic;
+    margin-bottom: 8px;
+  }
+  .vocab-card .indonesian {
+    font-size: 1em;
+    color: white;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    padding: 6px 18px;
+    border-radius: 20px;
+    display: inline-block;
+    font-weight: 700;
+  }
+
+  /* Warna border tiap kartu */
+  .vocab-card:nth-child(1) { border-color: #FF6B6B; }
+  .vocab-card:nth-child(2) { border-color: #FFD93D; }
+  .vocab-card:nth-child(3) { border-color: #6BCB77; }
+  .vocab-card:nth-child(4) { border-color: #4D96FF; }
+  .vocab-card:nth-child(5) { border-color: #FF9FF3; }
+  .vocab-card:nth-child(6) { border-color: #54A0FF; }
+
+  /* FORM NAMA */
+  .name-section { text-align: center; }
+  .name-section label {
+    display: block;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #2d3436;
+    margin-bottom: 15px;
+  }
+  .name-input {
+    width: 100%;
+    max-width: 400px;
+    padding: 15px 20px;
+    font-size: 1.1em;
+    border: 3px solid #dfe6e9;
+    border-radius: 15px;
+    text-align: center;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    transition: border-color 0.3s;
+    outline: none;
+  }
+  .name-input:focus { border-color: #667eea; }
+  .name-input::placeholder { color: #b2bec3; }
+
+  .btn-start {
+    margin-top: 20px;
+    padding: 15px 50px;
+    font-size: 1.2em;
+    font-weight: 800;
+    color: white;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Nunito', sans-serif;
+    box-shadow: 0 5px 15px rgba(102,126,234,0.4);
+  }
+  .btn-start:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(102,126,234,0.5);
+  }
+  .btn-start:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* QUIZ */
+  .quiz-section { display: none; }
+  .question-card {
+    background: #f8f9fa;
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-left: 5px solid #667eea;
+    transition: all 0.3s;
+  }
+  .question-card.answered { border-left-color: #6BCB77; }
+  .question-number {
+    display: inline-block;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    width: 35px; height: 35px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 35px;
+    font-weight: 800;
+    margin-right: 10px;
+    font-size: 0.95em;
+  }
+  .question-text {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #2d3436;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .question-text .arabic-q {
+    font-family: 'Amiri', serif;
+    font-size: 1.4em;
+    direction: rtl;
+    color: #6c5ce7;
+  }
+  .options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  @media (max-width: 500px) {
+    .options { grid-template-columns: 1fr; }
+  }
+  .option-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    background: white;
+    border: 2px solid #dfe6e9;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 600;
+    font-size: 1em;
+  }
+  .option-label:hover {
+    border-color: #667eea;
+    background: #f0f0ff;
+  }
+  .option-label input[type="radio"] { display: none; }
+  .option-label:has(input:checked) {
+    border-color: #667eea;
+    background: #f0f0ff;
+    box-shadow: 0 3px 10px rgba(102,126,234,0.2);
+  }
+  .option-letter {
+    background: #dfe6e9;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800;
+    font-size: 0.85em;
+    flex-shrink: 0;
+  }
+  .option-label:has(input:checked) .option-letter {
+    background: #667eea;
+    color: white;
+  }
+
+  .btn-submit {
+    display: block;
+    width: 100%;
+    max-width: 350px;
+    margin: 30px auto 0;
+    padding: 18px;
+    font-size: 1.3em;
+    font-weight: 800;
+    color: white;
+    background: linear-gradient(135deg, #00b894, #00cec9);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Nunito', sans-serif;
+    box-shadow: 0 5px 15px rgba(0,184,148,0.4);
+  }
+  .btn-submit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,184,148,0.5);
+  }
+  .btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* HASIL */
+  .result-section { display: none; }
+  .result-box { text-align: center; padding: 30px; }
+  .result-emoji {
+    font-size: 4em;
+    margin-bottom: 15px;
+    animation: bounce 1s ease infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+  .result-score {
+    font-size: 4em;
+    font-weight: 800;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .result-label {
+    font-size: 1.3em;
+    color: #636e72;
+    margin-bottom: 20px;
+  }
+  .result-message {
+    font-size: 1.2em;
+    font-weight: 700;
+    padding: 15px 25px;
+    border-radius: 15px;
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+  .result-message.excellent { background: #d4edda; color: #155724; }
+  .result-message.good { background: #fff3cd; color: #856404; }
+  .result-message.try-again { background: #f8d7da; color: #721c24; }
+  .result-detail { margin-top: 20px; text-align: left; }
+  .result-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .result-item.correct { background: #d4edda; color: #155724; }
+  .result-item.wrong { background: #f8d7da; color: #721c24; }
+  .result-item .check-icon { font-size: 1.3em; }
+
+  .btn-retry {
+    margin-top: 20px;
+    padding: 15px 40px;
+    font-size: 1.1em;
+    font-weight: 700;
+    color: white;
+    background: linear-gradient(135deg, #fd79a8, #e84393);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Nunito', sans-serif;
+  }
+  .btn-retry:hover { transform: translateY(-3px); }
+
+  /* LOADING */
+  .loading-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+  }
+  .loading-overlay.active { display: flex; }
+  .loading-box {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+  }
+  .spinner {
+    width: 50px; height: 50px;
+    border: 5px solid #f0f0f0;
+    border-top-color: #667eea;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 15px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* PROGRESS BAR */
+  .progress-bar {
+    background: #f0f0f0;
+    border-radius: 10px;
+    height: 12px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    border-radius: 10px;
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+  .progress-text {
+    text-align: center;
+    font-weight: 700;
+    color: #636e72;
+    margin-bottom: 10px;
+    font-size: 0.95em;
+  }
+
+  .footer {
+    text-align: center;
+    color: rgba(255,255,255,0.7);
+    padding: 20px;
+    font-size: 0.9em;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- HEADER -->
+  <div class="header">
+    <h1>🎓 Belajar Kosakata Bahasa Arab</h1>
+    <p class="subtitle">📝 Alat-Alat Tulis — Kelas 2 SD</p>
+    <div class="emoji-row">✏️ 📏 🖍️ </div>
+  </div>
+
+  <!-- MATERI KOSAKATA -->
+  <div class="card">
+    <div class="card-title">
+      <span class="icon">📖</span>
+      Kosakata: Alat Tulis (أَدَوَاتُ الْكِتَابَةِ)
+    </div>
+    <div class="vocab-grid">
+
+      <!-- 1. Pensil -->
+      <div class="vocab-card">
+        <img class="vocab-img" src="https://cdn.jsdelivr.net/gh/faudyadam77-tech/Kumpulan-gambar@main/pensil.jpeg" alt="Pensil" onerror="this.style.display='none'">
+        <div class="arabic">قَلَمُ رَصَاصٍ</div>
+        <div class="latin">Qalamu Rashaashin</div>
+        <div class="indonesian">Pensil</div>
+      </div>
+
+      <!-- 2. Spidol -->
+      <div class="vocab-card">
+        <img class="vocab-img" src="https://cdn.jsdelivr.net/gh/faudyadam77-tech/Kumpulan-gambar@main/spidol.jpeg" alt="Spidol" onerror="this.style.display='none'">
+        <div class="arabic">قَلَمُ السَّبُّورَةِ</div>
+        <div class="latin">Qalamus-Sabbuurati</div>
+        <div class="indonesian">Spidol Papan Tulis</div>
+      </div>
+
+      <!-- 3. Rautan / Peraut -->
+      <div class="vocab-card">
+        <img class="vocab-img" src="https://cdn.jsdelivr.net/gh/faudyadam77-tech/Kumpulan-gambar@main/peraut.jpeg" alt="Peraut" onerror="this.style.display='none'">
+        <div class="arabic">مِبْرَاةٌ</div>
+        <div class="latin">Mibraatun</div>
+        <div class="indonesian">Rautan / Peraut</div>
+      </div>
+
+      <!-- 4. Penggaris -->
+      <div class="vocab-card">
+        <img class="vocab-img" src="https://cdn.jsdelivr.net/gh/faudyadam77-tech/Kumpulan-gambar@main/penggaris.jpeg" alt="Penggaris" onerror="this.style.display='none'">
+        <div class="arabic">مِسْطَرَةٌ</div>
+        <div class="latin">Mistharatun</div>
+        <div class="indonesian">Penggaris</div>
+      </div>
+
+      <!-- 5. Penghapus -->
+      <div class="vocab-card">
+        <img class="vocab-img" src="https://cdn.jsdelivr.net/gh/faudyadam77-tech/Kumpulan-gambar@main/penghapus.jpeg" alt="Penghapus" onerror="this.style.display='none'">
+        <div class="arabic">مِمْحَاةٌ</div>
+        <div class="latin">Mimhaatun</div>
+        <div class="indonesian">Penghapus</div>
+      </div>
+
+      <!-- 6. Kotak Pensil -->
+      <div class="vocab-card">
+        <img class="vocab-img" src="https://cdn.jsdelivr.net/gh/faudyadam77-tech/Kumpulan-gambar@main/kotak-pensil.jpeg" alt="Kotak Pensil" onerror="this.style.display='none'">
+        <div class="arabic">طَلَّاسَةٌ</div>
+        <div class="latin">Thallaasatun</div>
+        <div class="indonesian">Kotak Pensil</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FORM NAMA -->
+  <div class="card name-section" id="nameSection">
+    <div class="card-title" style="justify-content:center;">
+      <span class="icon">✍️</span>
+      Isi Nama Sebelum Mengerjakan
+    </div>
+    <label for="studentName"> Siapa namamu?</label>
+    <input type="text" id="studentName" class="name-input" placeholder="Ketik namamu di sini..." autocomplete="off">
+    <br>
+    <button class="btn-start" id="btnStart" onclick="startQuiz()" disabled>🚀 Mulai Mengerjakan!</button>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="card quiz-section" id="quizSection">
+    <div class="card-title">
+      <span class="icon"></span>
+      Soal Pilihan Ganda
+    </div>
+    <div class="progress-text" id="progressText">0 dari 10 soal dijawab</div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div id="questionsContainer"></div>
+    <button class="btn-submit" id="btnSubmit" onclick="submitQuiz()" disabled>✅ Kirim Jawaban</button>
+  </div>
+
+  <!-- HASIL -->
+  <div class="card result-section" id="resultSection">
+    <div class="result-box">
+      <div class="result-emoji" id="resultEmoji">🎉</div>
+      <div class="result-score" id="resultScore">0</div>
+      <div class="result-label">dari 100</div>
+      <div class="result-message" id="resultMessage">Hebat!</div>
+      <div style="margin-top:15px; font-size:1.1em; color:#636e72;">
+        Nama: <strong id="resultName">-</strong>
+      </div>
+      <div class="result-detail" id="resultDetail"></div>
+      <button class="btn-retry" onclick="location.reload()"> Coba Lagi</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    📚 Materi Kosakata Bahasa Arab — Alat Tulis | Dibuat untuk Siswa Kelas 2 SD
+  </div>
+</div>
+
+<!-- LOADING -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-box">
+    <div class="spinner"></div>
+    <p style="font-weight:700; color:#2d3436;">📤 Mengirim jawaban ke guru...</p>
+    <p style="color:#636e72; font-size:0.9em;">Mohon tunggu sebentar</p>
+  </div>
+</div>
+
+<script>
+// ============================================
+// URL GOOGLE APPS SCRIPT (SUDAH TERHUBUNG)
+// ============================================
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby6zIPrT0QdsJyjxt7thYeN76KV6ufNRUgQDnRPsrku6ptMXZuhf6HgiV5EijpEf-1A/exec';
+
+// ============================================
+// DATA SOAL
+// ============================================
+const questions = [
+  {
+    q: 'Apa arti dari kata <span class="arabic-q">قَلَمُ رَصَاصٍ</span> ?',
+    options: ['Penggaris', 'Pensil', 'Penghapus', 'Rautan'],
+    answer: 1
+  },
+  {
+    q: 'Apa arti dari kata <span class="arabic-q">مِسْطَرَةٌ</span> ?',
+    options: ['Spidol', 'Kotak Pensil', 'Penggaris', 'Pensil'],
+    answer: 2
+  },
+  {
+    q: 'Apa arti dari kata <span class="arabic-q">مِمْحَاةٌ</span> ?',
+    options: ['Penghapus', 'Rautan', 'Pensil', 'Penggaris'],
+    answer: 0
+  },
+  {
+    q: 'Apa arti dari kata <span class="arabic-q">مِبْرَاةٌ</span> ?',
+    options: ['Penggaris', 'Penghapus', 'Spidol', 'Rautan'],
+    answer: 3
+  },
+  {
+    q: 'Apa arti dari kata <span class="arabic-q">طَلَّاسَةٌ</span> ?',
+    options: ['Pensil', 'Kotak Pensil', 'Spidol', 'Penghapus'],
+    answer: 1
+  },
+  {
+    q: 'Apa arti dari kata <span class="arabic-q">قَلَمُ السَّبُّورَةِ</span> ?',
+    options: ['Pensil', 'Penggaris', 'Spidol Papan Tulis', 'Rautan'],
+    answer: 2
+  },
+  {
+    q: 'Bahasa Arab dari <strong>"Pensil"</strong> adalah...',
+    options: ['مِسْطَرَةٌ', 'مِمْحَاةٌ', 'قَلَمُ رَصَاصٍ', 'مِبْرَاةٌ'],
+    answer: 2
+  },
+  {
+    q: 'Bahasa Arab dari <strong>"Penggaris"</strong> adalah...',
+    options: ['مِسْطَرَةٌ', 'طَلَّاسَةٌ', 'مِمْحَاةٌ', 'قَلَمُ رَصَاصٍ'],
+    answer: 0
+  },
+  {
+    q: 'Bahasa Arab dari <strong>"Penghapus"</strong> adalah...',
+    options: ['مِبْرَاةٌ', 'مِمْحَاةٌ', 'طَلَّاسَةٌ', 'قَلَمُ السَّبُّورَةِ'],
+    answer: 1
+  },
+  {
+    q: 'Bahasa Arab dari <strong>"Kotak Pensil"</strong> adalah...',
+    options: ['مِسْطَرَةٌ', 'مِبْرَاةٌ', 'قَلَمُ رَصَاصٍ', 'طَلَّاسَةٌ'],
+    answer: 3
+  }
+];
+
+const letters = ['A', 'B', 'C', 'D'];
+let answeredCount = 0;
+
+// ============================================
+// ENABLE BUTTON SAAT NAMA DIISI
+// ============================================
+document.getElementById('studentName').addEventListener('input', function() {
+  document.getElementById('btnStart').disabled = this.value.trim().length === 0;
+});
+
+// ============================================
+// RENDER SOAL
+// ============================================
+function renderQuestions() {
+  const container = document.getElementById('questionsContainer');
+  container.innerHTML = '';
+  questions.forEach((q, i) => {
+    let optionsHTML = '';
+    q.options.forEach((opt, j) => {
+      optionsHTML += `
+        <label class="option-label">
+          <input type="radio" name="q${i}" value="${j}" onchange="onAnswer(${i})">
+          <span class="option-letter">${letters[j]}</span>
+          <span class="option-text">${opt}</span>
+        </label>`;
+    });
+    container.innerHTML += `
+      <div class="question-card" id="qCard_${i}">
+        <div class="question-text">
+          <span class="question-number">${i + 1}</span>
+          ${q.q}
+        </div>
+        <div class="options">${optionsHTML}</div>
+      </div>`;
+  });
+}
+
+// ============================================
+// TRACK JAWABAN
+// ============================================
+function onAnswer(qIndex) {
+  document.getElementById(`qCard_${qIndex}`).classList.add('answered');
+  answeredCount = document.querySelectorAll('input[type="radio"]:checked').length;
+  document.getElementById('progressText').textContent = `${answeredCount} dari 10 soal dijawab`;
+  document.getElementById('progressFill').style.width = `${(answeredCount / 10) * 100}%`;
+  document.getElementById('btnSubmit').disabled = answeredCount < 10;
+}
+
+// ============================================
+// MULAI KUIS
+// ============================================
+function startQuiz() {
+  const name = document.getElementById('studentName').value.trim();
+  if (!name) return;
+  document.getElementById('nameSection').style.display = 'none';
+  document.getElementById('quizSection').style.display = 'block';
+  renderQuestions();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ============================================
+// KIRIM JAWABAN
+// ============================================
+function submitQuiz() {
+  const name = document.getElementById('studentName').value.trim();
+  if (!name) return;
+
+  const answers = [];
+  let correct = 0;
+  questions.forEach((q, i) => {
+    const selected = document.querySelector(`input[name="q${i}"]:checked`);
+    answers.push(selected ? parseInt(selected.value) : -1);
+    if (selected && parseInt(selected.value) === q.answer) correct++;
+  });
+
+  const score = correct * 10;
+
+  document.getElementById('loadingOverlay').classList.add('active');
+
+  const payload = {
+    nama: name,
+    jawaban: answers.map(a => letters[a] || '-'),
+    nilai: score
+  };
+
+  fetch(GOOGLE_SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  }).then(() => {
+    showResult(name, answers, correct, score);
+  }).catch(() => {
+    showResult(name, answers, correct, score);
+  });
+}
+
+// ============================================
+// TAMPILKAN HASIL
+// ============================================
+function showResult(name, answers, correct, score) {
+  document.getElementById('loadingOverlay').classList.remove('active');
+  document.getElementById('quizSection').style.display = 'none';
+  document.getElementById('resultSection').style.display = 'block';
+
+  document.getElementById('resultName').textContent = name;
+  document.getElementById('resultScore').textContent = score;
+
+  let emoji, msg, cls;
+  if (score >= 80) {
+    emoji = '🏆'; msg = 'Luar Biasa! Kamu Hebat! 🌟'; cls = 'excellent';
+  } else if (score >= 60) {
+    emoji = '😊'; msg = 'Bagus! Terus Belajar Ya! 💪'; cls = 'good';
+  } else {
+    emoji = ''; msg = 'Ayo Belajar Lagi! Kamu Pasti Bisa! 💪'; cls = 'try-again';
+  }
+  document.getElementById('resultEmoji').textContent = emoji;
+  const msgEl = document.getElementById('resultMessage');
+  msgEl.textContent = msg;
+  msgEl.className = 'result-message ' + cls;
+
+  let detailHTML = '<h3 style="margin-bottom:15px; color:#2d3436;">📋 Detail Jawaban:</h3>';
+  questions.forEach((q, i) => {
+    const isCorrect = answers[i] === q.answer;
+    detailHTML += `
+      <div class="result-item ${isCorrect ? 'correct' : 'wrong'}">
+        <span class="check-icon">${isCorrect ? '✅' : '❌'}</span>
+        <span>Soal ${i + 1}: ${isCorrect ? 'Benar' : 'Salah — Jawaban benar: ' + letters[q.answer] + '. ' + q.options[q.answer]}</span>
+      </div>`;
+  });
+  document.getElementById('resultDetail').innerHTML = detailHTML;
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
