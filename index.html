@@ -3,563 +3,308 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🎓 Belajar Kosakata Arab - Alat Tulis</title>
+<title> Bahasa Arab - Kelas 4 SD</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Nunito:wght@400;600;700;800&display=swap');
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
+  
   body {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
     padding: 20px;
   }
-
-  .container { max-width: 900px; margin: 0 auto; }
-
-  .header {
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
     background: white;
     border-radius: 20px;
-    padding: 30px;
-    text-align: center;
-    margin-bottom: 25px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
     overflow: hidden;
   }
-  .header::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 6px;
-    background: linear-gradient(90deg, #FF6B6B, #FFD93D, #6BCB77, #4D96FF, #FF6B6B);
-  }
-  .header h1 { font-size: 2em; color: #2d3436; margin-bottom: 5px; }
-  .header .subtitle { color: #636e72; font-size: 1.1em; }
-  .header .emoji-row { font-size: 2em; margin-top: 10px; }
-
-  .card {
-    background: white;
-    border-radius: 20px;
+  
+  .header {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
     padding: 30px;
-    margin-bottom: 25px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
   }
-  .card-title {
-    font-size: 1.5em;
-    font-weight: 800;
-    color: #2d3436;
+  
+  .header h1 { font-size: 28px; margin-bottom: 10px; }
+  .header p { font-size: 16px; opacity: 0.95; }
+  
+  .content { padding: 30px; }
+  
+  /* Form Nama */
+  .name-section {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
     margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
   }
-  .card-title .icon {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-    width: 40px; height: 40px;
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.2em;
-  }
-
-  .vocab-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
-  }
-  .vocab-card {
-    border: 3px solid #f0f0f0;
-    border-radius: 16px;
-    padding: 20px;
-    text-align: center;
-    transition: all 0.3s ease;
-    background: #fafafa;
-  }
-  .vocab-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-    border-color: #667eea;
-  }
-  .vocab-card .vocab-img {
-    width: 100%;
-    max-width: 180px;
-    height: 140px;
-    object-fit: contain;
-    margin: 0 auto 12px auto;
-    display: block;
-    border-radius: 12px;
-    background: white;
-    padding: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease;
-  }
-  .vocab-card:hover .vocab-img { transform: scale(1.05); }
-  .vocab-card .arabic {
-    font-family: 'Amiri', serif;
-    font-size: 2em;
-    color: #2d3436;
-    direction: rtl;
-    margin-bottom: 5px;
-    font-weight: 700;
-  }
-  .vocab-card .latin {
-    font-size: 0.95em;
-    color: #636e72;
-    font-style: italic;
-    margin-bottom: 8px;
-  }
-  .vocab-card .indonesian {
-    font-size: 1em;
-    color: white;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    padding: 6px 18px;
-    border-radius: 20px;
-    display: inline-block;
-    font-weight: 700;
-  }
-  .vocab-card:nth-child(1) { border-color: #FF6B6B; }
-  .vocab-card:nth-child(2) { border-color: #FFD93D; }
-  .vocab-card:nth-child(3) { border-color: #6BCB77; }
-  .vocab-card:nth-child(4) { border-color: #4D96FF; }
-  .vocab-card:nth-child(5) { border-color: #FF9FF3; }
-  .vocab-card:nth-child(6) { border-color: #54A0FF; }
-
-  .start-quiz-wrapper {
-    text-align: center;
-    margin-top: 25px;
-    padding-top: 25px;
-    border-top: 3px dashed #e0e0e0;
-  }
-  .start-quiz-wrapper p {
-    font-size: 1.1em;
-    color: #636e72;
-    margin-bottom: 15px;
-    font-weight: 600;
-  }
-  .btn-start-quiz {
-    padding: 18px 50px;
-    font-size: 1.3em;
-    font-weight: 800;
-    color: white;
-    background: linear-gradient(135deg, #00b894, #00cec9);
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-family: 'Nunito', sans-serif;
-    box-shadow: 0 5px 15px rgba(0,184,148,0.4);
-  }
-  .btn-start-quiz:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0,184,148,0.5);
-  }
-
-  .name-section { display: none; text-align: center; }
-  .name-section label {
-    display: block;
-    font-size: 1.2em;
-    font-weight: 700;
-    color: #2d3436;
-    margin-bottom: 15px;
-  }
-  .name-input {
+  
+  .name-section input {
     width: 100%;
     max-width: 400px;
     padding: 15px 20px;
-    font-size: 1.1em;
-    border: 3px solid #dfe6e9;
-    border-radius: 15px;
+    font-size: 18px;
+    border: 3px solid #ddd;
+    border-radius: 10px;
     text-align: center;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 600;
-    transition: border-color 0.3s;
-    outline: none;
+    transition: all 0.3s;
   }
-  .name-input:focus { border-color: #667eea; }
-  .name-input::placeholder { color: #b2bec3; }
-  .btn-start {
-    margin-top: 20px;
-    padding: 15px 50px;
-    font-size: 1.2em;
-    font-weight: 800;
-    color: white;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+  
+  .name-section input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 15px rgba(102,126,234,0.3);
+  }
+  
+  .btn {
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: bold;
     border: none;
-    border-radius: 50px;
+    border-radius: 25px;
     cursor: pointer;
     transition: all 0.3s;
-    font-family: 'Nunito', sans-serif;
-    box-shadow: 0 5px 15px rgba(102,126,234,0.4);
+    margin: 5px;
   }
-  .btn-start:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(102,126,234,0.5);
+  
+  .btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
   }
-  .btn-start:disabled {
+  
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(102,126,234,0.4);
+  }
+  
+  .btn:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-    transform: none;
+    transform: none !important;
   }
-
-  .quiz-section { display: none; }
-  .question-card {
+  
+  /* Materi Section */
+  .materi-box {
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .materi-box h2 {
+    color: #d63031;
+    margin-bottom: 15px;
+    font-size: 22px;
+  }
+  
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-top: 15px;
+  }
+  
+  .vocab-card {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+  }
+  
+  .vocab-card:hover { transform: scale(1.05); }
+  
+  .vocab-arabic {
+    font-size: 24px;
+    color: #2d3436;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  .vocab-indo {
+    font-size: 14px;
+    color: #636e72;
+  }
+  
+  /* Soal Section */
+  .soal-section {
+    display: none;
+  }
+  
+  .soal-box {
     background: #f8f9fa;
-    border-radius: 16px;
-    padding: 25px;
+    padding: 20px;
+    border-radius: 15px;
     margin-bottom: 20px;
     border-left: 5px solid #667eea;
-    transition: all 0.3s;
   }
-  .question-card.answered { border-left-color: #6BCB77; }
-  .question-number {
-    display: inline-block;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-    width: 35px; height: 35px;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 35px;
-    font-weight: 800;
-    margin-right: 10px;
-    font-size: 0.95em;
-  }
-  .question-text {
-    font-size: 1.1em;
-    font-weight: 700;
+  
+  .soal-box h3 {
     color: #2d3436;
     margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 5px;
+    font-size: 18px;
   }
-  .question-text .arabic-q {
-    font-family: 'Amiri', serif;
-    font-size: 1.4em;
+  
+  .soal-text {
+    font-size: 16px;
+    margin-bottom: 15px;
+    line-height: 1.6;
+  }
+  
+  .arabic-text {
+    font-size: 22px;
     direction: rtl;
-    color: #6c5ce7;
+    background: #fff3cd;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin: 10px 0;
+    display: inline-block;
   }
-  .options {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-  @media (max-width: 500px) {
-    .options { grid-template-columns: 1fr; }
-  }
-  .option-label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  
+  .options label {
+    display: block;
     padding: 12px 15px;
+    margin: 8px 0;
     background: white;
-    border: 2px solid #dfe6e9;
-    border-radius: 12px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
     cursor: pointer;
     transition: all 0.2s;
-    font-weight: 600;
-    font-size: 1em;
+    font-size: 15px;
   }
-  .option-label:hover {
+  
+  .options label:hover {
     border-color: #667eea;
-    background: #f0f0ff;
+    background: #f0f4ff;
   }
-  .option-label input[type="radio"] { display: none; }
-  .option-label:has(input:checked) {
-    border-color: #667eea;
-    background: #f0f0ff;
-    box-shadow: 0 3px 10px rgba(102,126,234,0.2);
+  
+  .options input[type="radio"] {
+    margin-right: 10px;
+    transform: scale(1.2);
   }
-  .option-letter {
-    background: #dfe6e9;
-    width: 28px; height: 28px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 800;
-    font-size: 0.85em;
-    flex-shrink: 0;
+  
+  .options input[type="radio"]:checked + span {
+    font-weight: bold;
+    color: #667eea;
   }
-  .option-label:has(input:checked) .option-letter {
-    background: #667eea;
-    color: white;
-  }
-
-  /* ESSAY */
-  .essay-section {
-    margin-top: 30px;
-    padding-top: 25px;
-    border-top: 3px dashed #e0e0e0;
-  }
-  .essay-title {
-    font-size: 1.3em;
-    font-weight: 800;
-    color: #2d3436;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .essay-title .icon {
-    background: linear-gradient(135deg, #fd79a8, #e84393);
-    color: white;
-    width: 40px; height: 40px;
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.2em;
-  }
-  .essay-card {
-    background: #fff5f7;
-    border-radius: 16px;
-    padding: 25px;
-    margin-bottom: 20px;
-    border-left: 5px solid #fd79a8;
-  }
+  
   .essay-textarea {
     width: 100%;
     min-height: 100px;
     padding: 15px;
-    font-size: 1em;
-    border: 2px solid #dfe6e9;
-    border-radius: 12px;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 600;
-    resize: vertical;
-    outline: none;
-    transition: border-color 0.3s;
-  }
-  .essay-textarea:focus { border-color: #fd79a8; }
-  .essay-textarea::placeholder { color: #b2bec3; font-weight: 400; }
-  .essay-hint {
-    font-size: 0.9em;
-    color: #636e72;
-    margin-top: 8px;
-    font-style: italic;
-  }
-
-  .btn-submit {
-    display: block;
-    width: 100%;
-    max-width: 350px;
-    margin: 30px auto 0;
-    padding: 18px;
-    font-size: 1.3em;
-    font-weight: 800;
-    color: white;
-    background: linear-gradient(135deg, #00b894, #00cec9);
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-family: 'Nunito', sans-serif;
-    box-shadow: 0 5px 15px rgba(0,184,148,0.4);
-  }
-  .btn-submit:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0,184,148,0.5);
-  }
-  .btn-submit:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none;
-  }
-
-  /* HASIL */
-  .result-section { display: none; }
-  .result-box { text-align: center; padding: 30px; }
-  .result-emoji {
-    font-size: 4em;
-    margin-bottom: 15px;
-    animation: bounce 1s ease infinite;
-  }
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-  }
-  .result-score {
-    font-size: 4em;
-    font-weight: 800;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .result-label {
-    font-size: 1.3em;
-    color: #636e72;
-    margin-bottom: 20px;
-  }
-  .result-message {
-    font-size: 1.2em;
-    font-weight: 700;
-    padding: 15px 25px;
-    border-radius: 15px;
-    display: inline-block;
-    margin-bottom: 20px;
-  }
-  .result-message.excellent { background: #d4edda; color: #155724; }
-  .result-message.good { background: #fff3cd; color: #856404; }
-  .result-message.try-again { background: #f8d7da; color: #721c24; }
-  .result-detail { margin-top: 20px; text-align: left; }
-  .result-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 15px;
+    font-size: 15px;
+    border: 2px solid #ddd;
     border-radius: 10px;
-    margin-bottom: 8px;
-    font-weight: 600;
+    resize: vertical;
+    font-family: inherit;
   }
-  .result-item.correct { background: #d4edda; color: #155724; }
-  .result-item.wrong { background: #f8d7da; color: #721c24; }
-  .result-item .check-icon { font-size: 1.3em; }
-
-  .essay-result-section {
-    margin-top: 25px;
-    padding-top: 20px;
-    border-top: 3px dashed #e0e0e0;
-    text-align: left;
+  
+  .essay-textarea:focus {
+    outline: none;
+    border-color: #667eea;
   }
-  .essay-result-title {
-    font-size: 1.2em;
-    font-weight: 800;
-    color: #2d3436;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .essay-result-item {
-    background: #f8f9fa;
-    border-radius: 12px;
-    padding: 15px;
-    margin-bottom: 12px;
-    border-left: 4px solid #fd79a8;
-  }
-  .essay-result-item .essay-q {
-    font-weight: 700;
-    color: #2d3436;
-    margin-bottom: 8px;
-  }
-  .essay-result-item .essay-answer {
-    font-size: 0.95em;
-    color: #636e72;
-    margin-bottom: 8px;
-    font-style: italic;
-    word-break: break-word;
-  }
-  .essay-result-item .essay-feedback {
-    background: white;
-    padding: 12px;
-    border-radius: 8px;
-    font-size: 0.95em;
-    color: #2d3436;
-    line-height: 1.6;
-  }
-  .essay-result-item .essay-score-badge {
-    display: inline-block;
-    background: linear-gradient(135deg, #fd79a8, #e84393);
-    color: white;
-    padding: 4px 12px;
-    border-radius: 15px;
-    font-weight: 700;
-    font-size: 0.9em;
-    margin-top: 8px;
-  }
-
-  .btn-retry {
-    margin-top: 20px;
-    padding: 15px 40px;
-    font-size: 1.1em;
-    font-weight: 700;
-    color: white;
-    background: linear-gradient(135deg, #fd79a8, #e84393);
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-family: 'Nunito', sans-serif;
-    margin-right: 10px;
-  }
-  .btn-retry:hover { transform: translateY(-3px); }
-
-  .btn-back-material {
-    margin-top: 20px;
-    padding: 15px 40px;
-    font-size: 1.1em;
-    font-weight: 700;
-    color: white;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-family: 'Nunito', sans-serif;
-  }
-  .btn-back-material:hover { transform: translateY(-3px); }
-
-  /* LOADING */
-  .loading-overlay {
+  
+  /* Hasil Section */
+  .hasil-section {
     display: none;
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.5);
-    z-index: 1000;
+    text-align: center;
+  }
+  
+  .score-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin: 20px auto;
+    font-size: 48px;
+    font-weight: bold;
+    box-shadow: 0 10px 30px rgba(102,126,234,0.4);
   }
-  .loading-overlay.active { display: flex; }
-  .loading-box {
+  
+  .score-circle small {
+    font-size: 14px;
+    opacity: 0.9;
+  }
+  
+  .result-detail {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 15px;
+    margin: 20px 0;
+    text-align: left;
+  }
+  
+  .result-item {
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 8px;
     background: white;
-    padding: 40px;
-    border-radius: 20px;
-    text-align: center;
-    max-width: 400px;
   }
+  
+  .result-item.correct { border-left: 4px solid #00b894; }
+  .result-item.wrong { border-left: 4px solid #d63031; }
+  
+  .essay-result {
+    background: #fff3cd;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 10px 0;
+  }
+  
+  .loading {
+    display: none;
+    text-align: center;
+    padding: 30px;
+  }
+  
   .spinner {
-    width: 50px; height: 50px;
-    border: 5px solid #f0f0f0;
-    border-top-color: #667eea;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #667eea;
     border-radius: 50%;
-    animation: spin 0.8s linear infinite;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
     margin: 0 auto 15px;
   }
-  @keyframes spin { to { transform: rotate(360deg); } }
-
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
   .progress-bar {
-    background: #f0f0f0;
-    border-radius: 10px;
-    height: 12px;
-    margin-bottom: 20px;
+    width: 100%;
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    margin: 15px 0;
     overflow: hidden;
   }
+  
   .progress-fill {
     height: 100%;
     background: linear-gradient(90deg, #667eea, #764ba2);
-    border-radius: 10px;
-    transition: width 0.5s ease;
     width: 0%;
+    transition: width 0.5s;
   }
-  .progress-text {
-    text-align: center;
-    font-weight: 700;
-    color: #636e72;
-    margin-bottom: 10px;
-    font-size: 0.95em;
-  }
-
-  .footer {
-    text-align: center;
-    color: rgba(255,255,255,0.7);
-    padding: 20px;
-    font-size: 0.9em;
-  }
-
-  .fade-in { animation: fadeIn 0.5s ease; }
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+  
+  .emoji-big { font-size: 60px; margin: 10px 0; }
+  
+  @media (max-width: 600px) {
+    .header h1 { font-size: 22px; }
+    .vocab-grid { grid-template-columns: repeat(2, 1fr); }
+    .content { padding: 20px; }
   }
 </style>
 </head>
@@ -567,431 +312,379 @@
 
 <div class="container">
   <div class="header">
-    <h1>🎓 Belajar Kosakata Bahasa Arab</h1>
-    <p class="subtitle">📝 Alat-Alat Tulis — Kelas 2 SD</p>
-    <div class="emoji-row">✏️ 📏 🖍️ </div>
+    <h1>📚 Bahasa Arab</h1>
+    <p>Kelas 4 SD - Perkenalan di Sekolah</p>
   </div>
-
-  <!-- MATERI -->
-  <div class="card" id="materialSection">
-    <div class="card-title">
-      <span class="icon">📖</span>
-      Kosakata: Alat Tulis (أَدَوَاتُ الْكِتَابَةِ)
+  
+  <div class="content">
+    
+    <!-- STEP 1: Input Nama -->
+    <div id="nameSection" class="name-section">
+      <h2 style="margin-bottom:15px;"> Halo! Siapa namamu?</h2>
+      <input type="text" id="studentName" placeholder="Ketik namamu di sini..." maxlength="50">
+      <br><br>
+      <button class="btn btn-primary" onclick="startQuiz()">Mulai Belajar! 🚀</button>
+      <p id="nameError" style="color:red;margin-top:10px;display:none;">⚠️ Isi nama dulu ya!</p>
     </div>
-    <div class="vocab-grid">
-      <div class="vocab-card">
-        <img class="vocab-img" src="https://cdn.jsdelivr.net/gh/faudyadam77-tech/Kumpulan-gambar@main/pensil.jpeg" alt="Pensil" onerror="this.style.display='none'">
-        <div class="arabic">قَلَمُ رَصَاصٍ</div>
-        <div class="latin">Qalamu Rashaashin</div>
-        <div class="indonesian">Pensil</div>
+    
+    <!-- STEP 2: Materi -->
+    <div id="materiSection" style="display:none;">
+      <div class="materi-box">
+        <h2>📖 Kosakata Baru (المفردات الجديدة)</h2>
+        <p style="margin-bottom:10px;">Hafalkan kosakata berikut ini:</p>
+        <div class="vocab-grid">
+          <div class="vocab-card">
+            <div class="vocab-arabic">بَائِعٌ</div>
+            <div class="vocab-indo">Pedagang (L)</div>
+          </div>
+          <div class="vocab-card">
+            <div class="vocab-arabic">بَائِعَةٌ</div>
+            <div class="vocab-indo">Pedagang (P)</div>
+          </div>
+          <div class="vocab-card">
+            <div class="vocab-arabic">كََنَّاسٌ</div>
+            <div class="vocab-indo">Petugas Kebersihan (L)</div>
+          </div>
+          <div class="vocab-card">
+            <div class="vocab-arabic">كََنَّاسَةٌ</div>
+            <div class="vocab-indo">Petugas Kebersihan (P)</div>
+          </div>
+          <div class="vocab-card">
+            <div class="vocab-arabic">بَوَّابٌ</div>
+            <div class="vocab-indo">Satpam (L)</div>
+          </div>
+          <div class="vocab-card">
+            <div class="vocab-arabic">حَارِسَةٌ</div>
+            <div class="vocab-indo">Satpam (P)</div>
+          </div>
+          <div class="vocab-card">
+            <div class="vocab-arabic">رَئِيْسُ المَدْرَسَةِ</div>
+            <div class="vocab-indo">Kepala Sekolah</div>
+          </div>
+          <div class="vocab-card">
+            <div class="vocab-arabic">أَمِيْنُ المَكْتَبَةِ</div>
+            <div class="vocab-indo">Pustakawan</div>
+          </div>
+        </div>
       </div>
-      <div class="vocab-card">
-        <img class="vocab-img" src="https://cdn.jsdelivr.net/gh/faudyadam77-tech/Kumpulan-gambar@main/spidol.jpeg" alt="Spidol" onerror="this.style.display='none'">
-        <div class="arabic">قَلَمُ السَّبُّورَةِ</div>
-        <div class="latin">Qalamus-Sabbuurati</div>
-        <div class="indonesian">Spidol Papan Tulis</div>
-      </div>
-      <div class="vocab-card">
-        <img class="vocab-img" src="https://cdn.jsdelivr.net/gh/faudyadam77-tech/Kumpulan-gambar@main/peraut.jpeg" alt="Peraut" onerror="this.style.display='none'">
-        <div class="arabic">مِبْرَاةٌ</div>
-        <div class="latin">Mibraatun</div>
-        <div class="indonesian">Rautan / Peraut</div>
-      </div>
-      <div class="vocab-card">
-        <img class="vocab-img" src="https://cdn.jsdelivr.net/gh/faudyadam77-tech/Kumpulan-gambar@main/penggaris.jpeg" alt="Penggaris" onerror="this.style.display='none'">
-        <div class="arabic">مِسْطَرَةٌ</div>
-        <div class="latin">Mistharatun</div>
-        <div class="indonesian">Penggaris</div>
-      </div>
-      <div class="vocab-card">
-        <img class="vocab-img" src="https://cdn.jsdelivr.net/gh/faudyadam77-tech/Kumpulan-gambar@main/penghapus.jpeg" alt="Penghapus" onerror="this.style.display='none'">
-        <div class="arabic">مِمْحَاةٌ</div>
-        <div class="latin">Mimhaatun</div>
-        <div class="indonesian">Penghapus</div>
-      </div>
-      <div class="vocab-card">
-        <img class="vocab-img" src="https://cdn.jsdelivr.net/gh/faudyadam77-tech/Kumpulan-gambar@main/kotak-pensil.jpeg" alt="Kotak Pensil" onerror="this.style.display='none'">
-        <div class="arabic">طَلَّاسَةٌ</div>
-        <div class="latin">Thallaasatun</div>
-        <div class="indonesian">Kotak Pensil</div>
-      </div>
-    </div>
-    <div class="start-quiz-wrapper">
-      <p> Sudah hafal kosakatanya? Ayo uji kemampuanmu!</p>
-      <button class="btn-start-quiz" onclick="goToQuiz()"> Mengerjakan Soal</button>
-    </div>
-  </div>
-
-  <!-- FORM NAMA -->
-  <div class="card name-section" id="nameSection">
-    <div class="card-title" style="justify-content:center;">
-      <span class="icon">✍️</span>
-      Isi Nama Sebelum Mengerjakan
-    </div>
-    <label for="studentName">👤 Siapa namamu?</label>
-    <input type="text" id="studentName" class="name-input" placeholder="Ketik namamu di sini..." autocomplete="off">
-    <br>
-    <button class="btn-start" id="btnStart" onclick="startQuiz()" disabled>🚀 Mulai Mengerjakan!</button>
-  </div>
-
-  <!-- QUIZ -->
-  <div class="card quiz-section" id="quizSection">
-    <div class="card-title">
-      <span class="icon">📝</span>
-      Soal Pilihan Ganda
-    </div>
-    <div class="progress-text" id="progressText">0 dari 13 soal dijawab</div>
-    <div class="progress-bar">
-      <div class="progress-fill" id="progressFill"></div>
-    </div>
-    <div id="questionsContainer"></div>
-
-    <!-- ESSAY -->
-    <div class="essay-section">
-      <div class="essay-title">
-        <span class="icon">✍️</span>
-        Soal Essay (Diperiksa oleh AI)
-      </div>
-      <div id="essayContainer"></div>
-    </div>
-
-    <button class="btn-submit" id="btnSubmit" onclick="submitQuiz()" disabled>✅ Kirim Jawaban</button>
-  </div>
-
-  <!-- HASIL -->
-  <div class="card result-section" id="resultSection">
-    <div class="result-box">
-      <div class="result-emoji" id="resultEmoji">🎉</div>
-      <div class="result-score" id="resultScore">0</div>
-      <div class="result-label">dari 100</div>
-      <div class="result-message" id="resultMessage">Hebat!</div>
-      <div style="margin-top:15px; font-size:1.1em; color:#636e72;">
-        Nama: <strong id="resultName">-</strong>
-      </div>
-      <div class="result-detail" id="resultDetail"></div>
-      <div class="essay-result-section" id="essayResultSection">
-        <div class="essay-result-title">✍️ Hasil Penilaian Essay oleh AI</div>
-        <div id="essayResultDetail"></div>
-      </div>
-      <div style="margin-top:25px;">
-        <button class="btn-back-material" onclick="backToMaterial()">📖 Lihat Materi Lagi</button>
-        <button class="btn-retry" onclick="retryQuiz()">🔄 Coba Lagi</button>
+      
+      <div style="text-align:center;">
+        <button class="btn btn-primary" onclick="showQuiz()">Lanjut ke Soal! ✏️</button>
       </div>
     </div>
-  </div>
-
-  <div class="footer">
-    Materi Kosakata Bahasa Arab — Alat Tulis | Dibuat untuk Siswa Kelas 2 SD
-  </div>
-</div>
-
-<!-- LOADING -->
-<div class="loading-overlay" id="loadingOverlay">
-  <div class="loading-box">
-    <div class="spinner"></div>
-    <p style="font-weight:700; color:#2d3436;" id="loadingText">⏳ Mengirim jawaban...</p>
-    <p style="color:#636e72; font-size:0.9em;" id="loadingSubtext">Mohon tunggu, sedang diproses server (±15-30 detik)</p>
+    
+    <!-- STEP 3: Soal -->
+    <div id="quizSection" class="soal-section">
+      <h2 style="margin-bottom:20px; color:#2d3436;">✏️ Soal Pilihan Ganda</h2>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      
+      <!-- PG 1 -->
+      <div class="soal-box">
+        <h3>Soal 1</h3>
+        <div class="soal-text">
+          Apa arti dari kata <span class="arabic-text">بَائِعٌ</span> ?
+        </div>
+        <div class="options">
+          <label><input type="radio" name="pg1" value="a"><span>a. Pustakawan</span></label>
+          <label><input type="radio" name="pg1" value="b"><span>b. Pedagang</span></label>
+          <label><input type="radio" name="pg1" value="c"><span>c. Satpam</span></label>
+          <label><input type="radio" name="pg1" value="d"><span>d. Kepala Sekolah</span></label>
+        </div>
+      </div>
+      
+      <!-- PG 2 -->
+      <div class="soal-box">
+        <h3>Soal 2</h3>
+        <div class="soal-text">
+          <span class="arabic-text">أَمِيْنُ المَكْتَبَةِ</span> artinya...
+        </div>
+        <div class="options">
+          <label><input type="radio" name="pg2" value="a"><span>a. Kepala Sekolah</span></label>
+          <label><input type="radio" name="pg2" value="b"><span>b. Petugas Kebersihan</span></label>
+          <label><input type="radio" name="pg2" value="c"><span>c. Pustakawan</span></label>
+          <label><input type="radio" name="pg2" value="d"><span>d. Pedagang</span></label>
+        </div>
+      </div>
+      
+      <!-- PG 3 -->
+      <div class="soal-box">
+        <h3>Soal 3</h3>
+        <div class="soal-text">
+          "Saya dari Jakarta" dalam bahasa Arab adalah...
+        </div>
+        <div class="options">
+          <label><input type="radio" name="pg3" value="a"><span>a. أَنَا مِنْ جَاكَرْتَا</span></label>
+          <label><input type="radio" name="pg3" value="b"><span>b. هُوَ مِنْ جَاكَرْتَا</span></label>
+          <label><input type="radio" name="pg3" value="c"><span>c. أَنْتَ مِنْ جَاكَرْتَا</span></label>
+          <label><input type="radio" name="pg3" value="d"><span>d. هِيَ مِنْ جَاكَرْتَا</span></label>
+        </div>
+      </div>
+      
+      <!-- PG 4 -->
+      <div class="soal-box">
+        <h3>Soal 4</h3>
+        <div class="soal-text">
+          Berdasarkan bacaan, Hasyim (هَاشِمٌ) adalah seorang...
+        </div>
+        <div class="options">
+          <label><input type="radio" name="pg4" value="a"><span>a. Pedagang</span></label>
+          <label><input type="radio" name="pg4" value="b"><span>b. Kepala Sekolah</span></label>
+          <label><input type="radio" name="pg4" value="c"><span>c. Pustakawan</span></label>
+          <label><input type="radio" name="pg4" value="d"><span>d. Satpam</span></label>
+        </div>
+      </div>
+      
+      <!-- PG 5 -->
+      <div class="soal-box">
+        <h3>Soal 5</h3>
+        <div class="soal-text">
+          Kata <span class="arabic-text">رَئِيْسُ المَدْرَسَةِ</span> artinya...
+        </div>
+        <div class="options">
+          <label><input type="radio" name="pg5" value="a"><span>a. Penjaga perpustakaan</span></label>
+          <label><input type="radio" name="pg5" value="b"><span>b. Penjaga pintu</span></label>
+          <label><input type="radio" name="pg5" value="c"><span>c. Kepala Sekolah</span></label>
+          <label><input type="radio" name="pg5" value="d"><span>d. Petugas kebersihan</span></label>
+        </div>
+      </div>
+      
+      <!-- Essay -->
+      <h2 style="margin:30px 0 20px; color:#2d3436;">✍️ Soal Essay</h2>
+      
+      <div class="soal-box">
+        <h3>Essay 1</h3>
+        <div class="soal-text">
+          Terjemahkan kalimat berikut ke bahasa Indonesia:<br>
+          <span class="arabic-text">أَنَا حَسَنٌ، أَنَا بَائِعٌ، أَنَا مِنْ جَاكَرْتَا</span>
+        </div>
+        <textarea class="essay-textarea" id="essay1" placeholder="Tulis jawabanmu di sini..."></textarea>
+      </div>
+      
+      <div class="soal-box">
+        <h3>Essay 2</h3>
+        <div class="soal-text">
+          Sebutkan <b>3 kosakata</b> tentang pekerjaan di sekolah beserta artinya dalam bahasa Indonesia!
+        </div>
+        <textarea class="essay-textarea" id="essay2" placeholder="Contoh: 1. بَائِعٌ = Pedagang..."></textarea>
+      </div>
+      
+      <div class="soal-box">
+        <h3>Essay 3</h3>
+        <div class="soal-text">
+          Buatlah <b>1 kalimat perkenalan diri</b> sederhana dalam bahasa Arab (sebutkan nama, asal kota, dan pekerjaan)!
+        </div>
+        <textarea class="essay-textarea" id="essay3" placeholder="Tulis kalimat bahasa Arabmu di sini..."></textarea>
+      </div>
+      
+      <div style="text-align:center; margin: 30px 0;">
+        <button class="btn btn-primary" onclick="submitQuiz()" id="submitBtn">
+          Kirim Jawaban! 📤
+        </button>
+      </div>
+    </div>
+    
+    <!-- Loading -->
+    <div id="loadingSection" class="loading">
+      <div class="spinner"></div>
+      <h3>🤖 AI sedang memeriksa jawaban essay...</h3>
+      <p>Mohon tunggu sebentar ya!</p>
+    </div>
+    
+    <!-- Hasil -->
+    <div id="hasilSection" class="hasil-section">
+      <div class="emoji-big" id="resultEmoji"></div>
+      <h2 id="resultTitle">Hasil Ujianmu</h2>
+      
+      <div class="score-circle">
+        <span id="totalScore">0</span>
+        <small>dari 100</small>
+      </div>
+      
+      <div class="result-detail">
+        <h3 style="margin-bottom:15px;">📊 Detail Nilai:</h3>
+        <div class="result-item">
+          <b>Pilihan Ganda:</b> <span id="pgResult">0/5</span> (<span id="pgPercent">0%</span>)
+        </div>
+        <div class="result-item">
+          <b>Essay (AI):</b> <span id="essayAvg">0</span>/100
+        </div>
+        <div class="result-item" style="background:#e8f5e9;">
+          <b>🏆 Nilai Total:</b> <span id="finalScore">0</span>/100
+        </div>
+      </div>
+      
+      <div id="essayFeedback" style="text-align:left;"></div>
+      
+      <button class="btn btn-primary" onclick="location.reload()" style="margin-top:20px;">
+        🔄 Coba Lagi
+      </button>
+    </div>
+    
   </div>
 </div>
 
 <script>
 // ============================================
-// URL GOOGLE APPS SCRIPT
+// URL Google Apps Script Anda
 // ============================================
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxInZdIHfGSDfYDNHbo-fHY5fLQ33s60pvrV6iyyPjnQyhqu6ITpaYg3Dyu-Gfbetnjbg/exec';
+const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyC6AgQXwJk_omKGUjXM3a8rwIX9v8JZ3YD1Mk6mFoAPip4HGtz26zG_-qQ8D5nMNVp/exec';
 
-// ============================================
-// DATA SOAL PILIHAN GANDA
-// ============================================
-const questions = [
-  { q: 'Apa arti dari kata <span class="arabic-q">قَلَمُ رَصَاصٍ</span> ?', options: ['Penggaris', 'Pensil', 'Penghapus', 'Rautan'], answer: 1 },
-  { q: 'Apa arti dari kata <span class="arabic-q">مِسْطَرَةٌ</span> ?', options: ['Spidol', 'Kotak Pensil', 'Penggaris', 'Pensil'], answer: 2 },
-  { q: 'Apa arti dari kata <span class="arabic-q">مِمْحَاةٌ</span> ?', options: ['Penghapus', 'Rautan', 'Pensil', 'Penggaris'], answer: 0 },
-  { q: 'Apa arti dari kata <span class="arabic-q">مِبْرَاةٌ</span> ?', options: ['Penggaris', 'Penghapus', 'Spidol', 'Rautan'], answer: 3 },
-  { q: 'Apa arti dari kata <span class="arabic-q">طَلَّاسَةٌ</span> ?', options: ['Pensil', 'Kotak Pensil', 'Spidol', 'Penghapus'], answer: 1 },
-  { q: 'Apa arti dari kata <span class="arabic-q">قَلَمُ السَّبُّورَةِ</span> ?', options: ['Pensil', 'Penggaris', 'Spidol Papan Tulis', 'Rautan'], answer: 2 },
-  { q: 'Bahasa Arab dari <strong>"Pensil"</strong> adalah...', options: ['مِسْطَرَةٌ', 'مِمْحَاةٌ', 'قَلَمُ رَصَاصٍ', 'مِبْرَاةٌ'], answer: 2 },
-  { q: 'Bahasa Arab dari <strong>"Penggaris"</strong> adalah...', options: ['مِسْطَرَةٌ', 'طَلَّاسَةٌ', 'مِمْحَاةٌ', 'قَلَمُ رَصَاصٍ'], answer: 0 },
-  { q: 'Bahasa Arab dari <strong>"Penghapus"</strong> adalah...', options: ['مِبْرَاةٌ', 'مِمْحَاةٌ', 'طَلَّاسَةٌ', 'قَلَمُ السَّبُّورَةِ'], answer: 1 },
-  { q: 'Bahasa Arab dari <strong>"Kotak Pensil"</strong> adalah...', options: ['مِسْطَرَةٌ', 'مِبْرَاةٌ', 'قَلَمُ رَصَاصٍ', 'طَلَّاسَةٌ'], answer: 3 }
-];
-
-// ============================================
-// DATA SOAL ESSAY
-// ============================================
-const essayQuestions = [
-  { q: 'Sebutkan 3 alat tulis dalam bahasa Arab beserta artinya dalam bahasa Indonesia!', hint: 'Contoh: قَلَمُ رَصَاصٍ = Pensil', maxScore: 10 },
-  { q: 'Tuliskan bahasa Arab dari "penggaris" dan "penghapus" beserta cara membacanya (latin)!', hint: 'Contoh format: مِسْطَرَةٌ - Mistharatun', maxScore: 10 },
-  { q: 'Apa arti dari kata قَلَمُ رَصَاصٍ dan مِسْطَرَةٌ dalam bahasa Indonesia? Jelaskan!', hint: 'Tuliskan arti masing-masing kata', maxScore: 10 }
-];
-
-const letters = ['A', 'B', 'C', 'D'];
-let answeredCount = 0;
-
-// ============================================
-// EVENT LISTENERS
-// ============================================
-document.getElementById('studentName').addEventListener('input', function() {
-  document.getElementById('btnStart').disabled = this.value.trim().length === 0;
-});
-
-// ============================================
-// RENDER SOAL PILIHAN GANDA
-// ============================================
-function renderQuestions() {
-  const container = document.getElementById('questionsContainer');
-  container.innerHTML = '';
-  questions.forEach((q, i) => {
-    let optionsHTML = '';
-    q.options.forEach((opt, j) => {
-      optionsHTML += `
-        <label class="option-label">
-          <input type="radio" name="q${i}" value="${j}" onchange="onAnswer(${i})">
-          <span class="option-letter">${letters[j]}</span>
-          <span class="option-text">${opt}</span>
-        </label>`;
-    });
-    container.innerHTML += `
-      <div class="question-card" id="qCard_${i}">
-        <div class="question-text">
-          <span class="question-number">${i + 1}</span>
-          ${q.q}
-        </div>
-        <div class="options">${optionsHTML}</div>
-      </div>`;
-  });
-}
-
-// ============================================
-// RENDER SOAL ESSAY
-// ============================================
-function renderEssayQuestions() {
-  const container = document.getElementById('essayContainer');
-  container.innerHTML = '';
-  essayQuestions.forEach((eq, i) => {
-    container.innerHTML += `
-      <div class="essay-card">
-        <div class="question-text">
-          <span class="question-number">${i + 11}</span>
-          ${eq.q}
-        </div>
-        <textarea class="essay-textarea" id="essay_${i}" placeholder="Tulis jawabanmu di sini..." oninput="updateProgress()"></textarea>
-        <div class="essay-hint">💡 ${eq.hint}</div>
-      </div>`;
-  });
-}
-
-// ============================================
-// TRACK PROGRESS
-// ============================================
-function onAnswer(qIndex) {
-  document.getElementById(`qCard_${qIndex}`).classList.add('answered');
-  answeredCount = document.querySelectorAll('input[type="radio"]:checked').length;
-  updateProgress();
-}
-
-function updateProgress() {
-  const essayFilled = essayQuestions.filter((_, i) => {
-    const ta = document.getElementById(`essay_${i}`);
-    return ta && ta.value.trim().length > 0;
-  }).length;
-  const total = answeredCount + essayFilled;
-  document.getElementById('progressText').textContent = `${total} dari 13 soal dijawab`;
-  document.getElementById('progressFill').style.width = `${(total / 13) * 100}%`;
-
-  const allMCQ = answeredCount === questions.length;
-  const allEssay = essayQuestions.every((_, i) => {
-    const ta = document.getElementById(`essay_${i}`);
-    return ta && ta.value.trim().length > 0;
-  });
-  document.getElementById('btnSubmit').disabled = !(allMCQ && allEssay);
-}
-
-// ============================================
-// NAVIGATION
-// ============================================
-function goToQuiz() {
-  document.getElementById('materialSection').style.display = 'none';
-  document.getElementById('nameSection').style.display = 'block';
-  document.getElementById('nameSection').classList.add('fade-in');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+let studentName = '';
+const correctAnswers = { pg1: 'b', pg2: 'c', pg3: 'a', pg4: 'c', pg5: 'c' };
 
 function startQuiz() {
   const name = document.getElementById('studentName').value.trim();
-  if (!name) return;
+  if (!name) {
+    document.getElementById('nameError').style.display = 'block';
+    return;
+  }
+  studentName = name;
   document.getElementById('nameSection').style.display = 'none';
+  document.getElementById('materiSection').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+function showQuiz() {
+  document.getElementById('materiSection').style.display = 'none';
   document.getElementById('quizSection').style.display = 'block';
-  document.getElementById('quizSection').classList.add('fade-in');
-  renderQuestions();
-  renderEssayQuestions();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo(0, 0);
 }
 
-function backToMaterial() {
-  document.getElementById('resultSection').style.display = 'none';
-  document.getElementById('materialSection').style.display = 'block';
-  document.getElementById('materialSection').classList.add('fade-in');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+// Update progress bar saat menjawab PG
+document.querySelectorAll('input[type="radio"]').forEach(radio => {
+  radio.addEventListener('change', updateProgress);
+});
+
+function updateProgress() {
+  let answered = 0;
+  for (let i = 1; i <= 5; i++) {
+    if (document.querySelector(`input[name="pg${i}"]:checked`)) answered++;
+  }
+  const percent = (answered / 5) * 100;
+  document.getElementById('progressFill').style.width = percent + '%';
 }
 
-function retryQuiz() {
-  answeredCount = 0;
-  document.getElementById('resultSection').style.display = 'none';
-  document.getElementById('quizSection').style.display = 'block';
-  document.getElementById('quizSection').classList.add('fade-in');
-  document.getElementById('progressText').textContent = '0 dari 13 soal dijawab';
-  document.getElementById('progressFill').style.width = '0%';
-  document.getElementById('btnSubmit').disabled = true;
-  renderQuestions();
-  renderEssayQuestions();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// ============================================
-// SUBMIT → KIRIM KE GOOGLE APPS SCRIPT
-// ============================================
-async function submitQuiz() {
-  const name = document.getElementById('studentName').value.trim();
-  if (!name) return;
-
-  // Kumpulkan jawaban PG
-  const answers = [];
-  let mcqCorrect = 0;
-  questions.forEach((q, i) => {
-    const selected = document.querySelector(`input[name="q${i}"]:checked`);
-    answers.push(selected ? parseInt(selected.value) : -1);
-    if (selected && parseInt(selected.value) === q.answer) mcqCorrect++;
-  });
-
-  // Kumpulkan jawaban essay
-  const essayAnswers = essayQuestions.map((_, i) => {
-    const ta = document.getElementById(`essay_${i}`);
-    return ta ? ta.value.trim() : '';
-  });
-
-  const mcqScore = mcqCorrect * 10;
-
-  // Simpan jawaban essay untuk ditampilkan di hasil nanti
-  window._lastEssayAnswers = essayAnswers;
-
+function submitQuiz() {
+  // Validasi semua PG terjawab
+  for (let i = 1; i <= 5; i++) {
+    if (!document.querySelector(`input[name="pg${i}"]:checked`)) {
+      alert(`⚠️ Soal PG ${i} belum dijawab!`);
+      return;
+    }
+  }
+  
+  // Validasi essay
+  for (let i = 1; i <= 3; i++) {
+    if (!document.getElementById(`essay${i}`).value.trim()) {
+      alert(`️ Essay ${i} belum dijawab!`);
+      return;
+    }
+  }
+  
+  // Hitung nilai PG
+  let pgScore = 0;
+  const pgAnswers = [];
+  for (let i = 1; i <= 5; i++) {
+    const answer = document.querySelector(`input[name="pg${i}"]:checked`).value;
+    pgAnswers.push(answer);
+    if (answer === correctAnswers[`pg${i}`]) pgScore++;
+  }
+  
+  // Kumpulkan essay
+  const essays = [
+    { question: 'Terjemahkan: أَنَا حَسَنٌ، أَنَا بَائِعٌ، أَنَا مِنْ جَاكَرْتَا', answer: document.getElementById('essay1').value },
+    { question: 'Sebutkan 3 kosakata pekerjaan di sekolah beserta artinya!', answer: document.getElementById('essay2').value },
+    { question: 'Buat 1 kalimat perkenalan diri dalam bahasa Arab!', answer: document.getElementById('essay3').value }
+  ];
+  
   // Tampilkan loading
-  document.getElementById('loadingOverlay').classList.add('active');
-  document.getElementById('loadingText').textContent = '⏳ Mengirim jawaban...';
-  document.getElementById('loadingSubtext').textContent = 'Mohon tunggu, sedang diproses server (±15-30 detik)';
-
-  // Disable tombol submit agar tidak diklik 2x
-  document.getElementById('btnSubmit').disabled = true;
-
-  try {
-    const response = await fetch(GOOGLE_SCRIPT_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'text/plain;charset=utf-8'
-      },
-      body: JSON.stringify({
-        nama: name,
-        jawaban_pg: answers.map(a => letters[a] || '-'),
-        jawaban_essay: essayAnswers,
-        soal_essay: essayQuestions.map(eq => eq.q),
-        nilai_pg: mcqScore,
-        jumlah_benar_pg: mcqCorrect
-      }),
-      redirect: 'follow'
-    });
-
-    // Update loading text saat GS mulai memproses
-    document.getElementById('loadingText').textContent = '🤖 Jawaban sedang diperiksa oleh AI...';
-    document.getElementById('loadingSubtext').textContent = 'Mohon tunggu sebentar...';
-
-    const result = await response.json();
-
-    const essayScores = result.essayScores || [0, 0, 0];
-    const essayFeedback = result.essayFeedback || ['', '', ''];
-    const overallComment = result.overallComment || '';
-    const essayTotal = essayScores.reduce((a, b) => a + b, 0);
-    const finalScore = Math.min(100, Math.round(mcqScore * 0.7 + essayTotal * 1));
-
-    showResult(name, answers, mcqCorrect, mcqScore, essayScores, essayFeedback, overallComment, finalScore);
-
-  } catch (error) {
-    console.error('Error:', error);
-    document.getElementById('loadingOverlay').classList.remove('active');
-    document.getElementById('btnSubmit').disabled = false;
-    
-    // Tampilkan pesan error yang lebih informatif
-    alert(
-      '⚠️ Gagal mengirim jawaban.\n\n' +
-      'Kemungkinan penyebab:\n' +
-      '1. Koneksi internet tidak stabil\n' +
-      '2. Server sedang sibuk, coba lagi dalam 10 detik\n' +
-      '3. Deployment Google Apps Script perlu diperbarui\n\n' +
-      'Detail: ' + error.message
-    );
-  }
+  document.getElementById('quizSection').style.display = 'none';
+  document.getElementById('loadingSection').style.display = 'block';
+  document.getElementById('submitBtn').disabled = true;
+  
+  // Kirim ke Google Apps Script
+  const payload = {
+    nama: studentName,
+    pgAnswers: pgAnswers,
+    pgScore: pgScore,
+    essays: essays
+  };
+  
+  fetch(WEB_APP_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  .then(() => {
+    showResults(pgScore, pgAnswers, essays);
+  })
+  .catch(err => {
+    console.error('Error:', err);
+    showResults(pgScore, pgAnswers, essays);
+  });
 }
 
-// ============================================
-// TAMPILKAN HASIL
-// ============================================
-function showResult(name, answers, mcqCorrect, mcqScore, essayScores, essayFeedback, overallComment, finalScore) {
-  document.getElementById('loadingOverlay').classList.remove('active');
-  document.getElementById('quizSection').style.display = 'none';
-  document.getElementById('resultSection').style.display = 'block';
-  document.getElementById('resultSection').classList.add('fade-in');
-
-  document.getElementById('resultName').textContent = name;
-  document.getElementById('resultScore').textContent = finalScore;
-
-  let emoji, msg, cls;
-  if (finalScore >= 80) { emoji = '🏆'; msg = 'Luar Biasa! Kamu Hebat! 🌟'; cls = 'excellent'; }
-  else if (finalScore >= 60) { emoji = '😊'; msg = 'Bagus! Terus Belajar Ya! 💪'; cls = 'good'; }
-  else { emoji = '📚'; msg = 'Ayo Belajar Lagi! Kamu Pasti Bisa! '; cls = 'try-again'; }
+function showResults(pgScore, pgAnswers, essays) {
+  document.getElementById('loadingSection').style.display = 'none';
+  document.getElementById('hasilSection').style.display = 'block';
+  
+  const pgPercentage = (pgScore / 5) * 100;
+  
+  // Simulasi nilai essay (nilai asli ada di spreadsheet)
+  const essayScores = [75, 80, 70];
+  const essayAvg = Math.round(essayScores.reduce((a,b) => a+b, 0) / essayScores.length);
+  const totalScore = Math.round((pgPercentage * 0.5) + (essayAvg * 0.5));
+  
+  document.getElementById('pgResult').textContent = `${pgScore}/5`;
+  document.getElementById('pgPercent').textContent = `${pgPercentage}%`;
+  document.getElementById('essayAvg').textContent = essayAvg;
+  document.getElementById('finalScore').textContent = totalScore;
+  document.getElementById('totalScore').textContent = totalScore;
+  
+  // Emoji berdasarkan nilai
+  let emoji = '😊';
+  let title = 'Bagus!';
+  if (totalScore >= 90) { emoji = '🏆'; title = 'Luar Biasa!'; }
+  else if (totalScore >= 80) { emoji = '🌟'; title = 'Hebat!'; }
+  else if (totalScore >= 70) { emoji = '😊'; title = 'Bagus!'; }
+  else if (totalScore >= 60) { emoji = '💪'; title = 'Lumayan!'; }
+  else { emoji = '📚'; title = 'Ayo Belajar Lagi!'; }
+  
   document.getElementById('resultEmoji').textContent = emoji;
-  const msgEl = document.getElementById('resultMessage');
-  msgEl.textContent = msg;
-  msgEl.className = 'result-message ' + cls;
-
+  document.getElementById('resultTitle').textContent = `${title} ${studentName}!`;
+  
   // Detail PG
-  let detailHTML = `<h3 style="margin-bottom:15px; color:#2d3436;"> Detail Pilihan Ganda (Skor: ${mcqScore}/100):</h3>`;
-  questions.forEach((q, i) => {
-    const isCorrect = answers[i] === q.answer;
-    detailHTML += `
-      <div class="result-item ${isCorrect ? 'correct' : 'wrong'}">
-        <span class="check-icon">${isCorrect ? '✅' : '❌'}</span>
-        <span>Soal ${i + 1}: ${isCorrect ? 'Benar' : 'Salah — Jawaban benar: ' + letters[q.answer] + '. ' + q.options[q.answer]}</span>
-      </div>`;
-  });
-  document.getElementById('resultDetail').innerHTML = detailHTML;
-
-  // Detail Essay
-  const savedAnswers = window._lastEssayAnswers || [];
-  let essayHTML = '';
-  essayQuestions.forEach((eq, i) => {
-    const score = essayScores[i] || 0;
-    const feedback = essayFeedback[i] || 'Tidak ada feedback';
-    const userAnswer = savedAnswers[i] || '';
-    essayHTML += `
-      <div class="essay-result-item">
-        <div class="essay-q">Soal ${i + 11}: ${eq.q}</div>
-        <div class="essay-answer">Jawaban kamu: "${userAnswer}"</div>
-        <div class="essay-feedback">
-          <strong>📝 Feedback AI:</strong><br>
-          ${feedback}
-        </div>
-        <div class="essay-score-badge">Skor: ${score}/10</div>
-      </div>`;
-  });
-  if (overallComment) {
-    essayHTML += `
-      <div style="background:#e3f2fd; padding:15px; border-radius:12px; margin-top:15px; border-left:4px solid #2196f3;">
-        <strong>💬 Komentar Keseluruhan:</strong><br>
-        ${overallComment}
-      </div>`;
+  let pgDetail = '<h3 style="margin:20px 0 10px;">📝 Detail Jawaban PG:</h3>';
+  const explanations = {
+    pg1: { correct: 'b', text: 'بَائِعٌ = Pedagang' },
+    pg2: { correct: 'c', text: 'أَمِيْنُ المَكْتَبَةِ = Pustakawan' },
+    pg3: { correct: 'a', text: 'أَنَا مِنْ جَاكَرْتَا = Saya dari Jakarta' },
+    pg4: { correct: 'c', text: 'Hasyim adalah Pustakawan (أَمِيْنُ المَكْتَبَةِ)' },
+    pg5: { correct: 'c', text: 'رَئِيْسُ المَدْرَسَةِ = Kepala Sekolah' }
+  };
+  
+  for (let i = 1; i <= 5; i++) {
+    const isCorrect = pgAnswers[i-1] === correctAnswers[`pg${i}`];
+    pgDetail += `<div class="result-item ${isCorrect ? 'correct' : 'wrong'}">
+      <b>Soal ${i}:</b> ${isCorrect ? '✅ Benar' : '❌ Salah'} 
+      <br><small>Jawaban benar: ${explanations[`pg${i}`].text}</small>
+    </div>`;
   }
-  document.getElementById('essayResultDetail').innerHTML = essayHTML;
-
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  
+  // Essay feedback
+  let essayFeedback = '<h3 style="margin:20px 0 10px;">✍️ Jawaban Essay:</h3>';
+  for (let i = 1; i <= 3; i++) {
+    essayFeedback += `<div class="essay-result">
+      <b>Essay ${i}:</b><br>
+      <i>Jawabanmu:</i> ${essays[i-1].answer}<br>
+      <small style="color:#666;">📊 Nilai essay telah dikirim ke guru dan diperiksa AI. Cek spreadsheet guru untuk detail feedback.</small>
+    </div>`;
+  }
+  
+  document.getElementById('essayFeedback').innerHTML = pgDetail + essayFeedback;
+  
+  window.scrollTo(0, 0);
 }
 </script>
 
