@@ -18,7 +18,6 @@
 
   .container { max-width: 900px; margin: 0 auto; }
 
-  /* HEADER */
   .header {
     background: white;
     border-radius: 20px;
@@ -40,7 +39,6 @@
   .header .subtitle { color: #636e72; font-size: 1.1em; }
   .header .emoji-row { font-size: 2em; margin-top: 10px; }
 
-  /* CARD */
   .card {
     background: white;
     border-radius: 20px;
@@ -66,7 +64,6 @@
     font-size: 1.2em;
   }
 
-  /* KOSAKATA GRID */
   .vocab-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -129,7 +126,6 @@
   .vocab-card:nth-child(5) { border-color: #FF9FF3; }
   .vocab-card:nth-child(6) { border-color: #54A0FF; }
 
-  /* TOMBOL MULAI SOAL */
   .start-quiz-wrapper {
     text-align: center;
     margin-top: 25px;
@@ -160,7 +156,6 @@
     box-shadow: 0 8px 25px rgba(0,184,148,0.5);
   }
 
-  /* FORM NAMA */
   .name-section { display: none; text-align: center; }
   .name-section label {
     display: block;
@@ -208,7 +203,6 @@
     transform: none;
   }
 
-  /* QUIZ */
   .quiz-section { display: none; }
   .question-card {
     background: #f8f9fa;
@@ -291,6 +285,59 @@
     background: #667eea;
     color: white;
   }
+
+  /* ESSAY */
+  .essay-section {
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 3px dashed #e0e0e0;
+  }
+  .essay-title {
+    font-size: 1.3em;
+    font-weight: 800;
+    color: #2d3436;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .essay-title .icon {
+    background: linear-gradient(135deg, #fd79a8, #e84393);
+    color: white;
+    width: 40px; height: 40px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2em;
+  }
+  .essay-card {
+    background: #fff5f7;
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-left: 5px solid #fd79a8;
+  }
+  .essay-textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 15px;
+    font-size: 1em;
+    border: 2px solid #dfe6e9;
+    border-radius: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  .essay-textarea:focus { border-color: #fd79a8; }
+  .essay-textarea::placeholder { color: #b2bec3; font-weight: 400; }
+  .essay-hint {
+    font-size: 0.9em;
+    color: #636e72;
+    margin-top: 8px;
+    font-style: italic;
+  }
+
   .btn-submit {
     display: block;
     width: 100%;
@@ -368,6 +415,59 @@
   .result-item.wrong { background: #f8d7da; color: #721c24; }
   .result-item .check-icon { font-size: 1.3em; }
 
+  .essay-result-section {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 3px dashed #e0e0e0;
+    text-align: left;
+  }
+  .essay-result-title {
+    font-size: 1.2em;
+    font-weight: 800;
+    color: #2d3436;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .essay-result-item {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 12px;
+    border-left: 4px solid #fd79a8;
+  }
+  .essay-result-item .essay-q {
+    font-weight: 700;
+    color: #2d3436;
+    margin-bottom: 8px;
+  }
+  .essay-result-item .essay-answer {
+    font-size: 0.95em;
+    color: #636e72;
+    margin-bottom: 8px;
+    font-style: italic;
+    word-break: break-word;
+  }
+  .essay-result-item .essay-feedback {
+    background: white;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 0.95em;
+    color: #2d3436;
+    line-height: 1.6;
+  }
+  .essay-result-item .essay-score-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #fd79a8, #e84393);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-weight: 700;
+    font-size: 0.9em;
+    margin-top: 8px;
+  }
+
   .btn-retry {
     margin-top: 20px;
     padding: 15px 40px;
@@ -415,6 +515,7 @@
     padding: 40px;
     border-radius: 20px;
     text-align: center;
+    max-width: 400px;
   }
   .spinner {
     width: 50px; height: 50px;
@@ -426,7 +527,6 @@
   }
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* PROGRESS BAR */
   .progress-bar {
     background: #f0f0f0;
     border-radius: 10px;
@@ -456,10 +556,7 @@
     font-size: 0.9em;
   }
 
-  /* ANIMASI TRANSISI */
-  .fade-in {
-    animation: fadeIn 0.5s ease;
-  }
+  .fade-in { animation: fadeIn 0.5s ease; }
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -469,113 +566,99 @@
 <body>
 
 <div class="container">
-  <!-- HEADER -->
   <div class="header">
     <h1>🎓 Belajar Kosakata Bahasa Arab</h1>
     <p class="subtitle">📝 Alat-Alat Tulis — Kelas 2 SD</p>
     <div class="emoji-row">✏️ 📏 🖍️ </div>
   </div>
 
-  <!-- ============================================ -->
-  <!-- MATERI KOSAKATA (TAMPIL PERTAMA KALI) -->
-  <!-- ============================================ -->
+  <!-- MATERI -->
   <div class="card" id="materialSection">
     <div class="card-title">
-      <span class="icon"></span>
+      <span class="icon">📖</span>
       Kosakata: Alat Tulis (أَدَوَاتُ الْكِتَابَةِ)
     </div>
     <div class="vocab-grid">
-
-      <!-- 1. Pensil -->
       <div class="vocab-card">
         <img class="vocab-img" src="https://cdn.jsdelivr.net/gh/faudyadam77-tech/Kumpulan-gambar@main/pensil.jpeg" alt="Pensil" onerror="this.style.display='none'">
         <div class="arabic">قَلَمُ رَصَاصٍ</div>
         <div class="latin">Qalamu Rashaashin</div>
         <div class="indonesian">Pensil</div>
       </div>
-
-      <!-- 2. Spidol -->
       <div class="vocab-card">
         <img class="vocab-img" src="https://cdn.jsdelivr.net/gh/faudyadam77-tech/Kumpulan-gambar@main/spidol.jpeg" alt="Spidol" onerror="this.style.display='none'">
         <div class="arabic">قَلَمُ السَّبُّورَةِ</div>
         <div class="latin">Qalamus-Sabbuurati</div>
         <div class="indonesian">Spidol Papan Tulis</div>
       </div>
-
-      <!-- 3. Rautan / Peraut -->
       <div class="vocab-card">
         <img class="vocab-img" src="https://cdn.jsdelivr.net/gh/faudyadam77-tech/Kumpulan-gambar@main/peraut.jpeg" alt="Peraut" onerror="this.style.display='none'">
         <div class="arabic">مِبْرَاةٌ</div>
         <div class="latin">Mibraatun</div>
         <div class="indonesian">Rautan / Peraut</div>
       </div>
-
-      <!-- 4. Penggaris -->
       <div class="vocab-card">
         <img class="vocab-img" src="https://cdn.jsdelivr.net/gh/faudyadam77-tech/Kumpulan-gambar@main/penggaris.jpeg" alt="Penggaris" onerror="this.style.display='none'">
         <div class="arabic">مِسْطَرَةٌ</div>
         <div class="latin">Mistharatun</div>
         <div class="indonesian">Penggaris</div>
       </div>
-
-      <!-- 5. Penghapus -->
       <div class="vocab-card">
         <img class="vocab-img" src="https://cdn.jsdelivr.net/gh/faudyadam77-tech/Kumpulan-gambar@main/penghapus.jpeg" alt="Penghapus" onerror="this.style.display='none'">
         <div class="arabic">مِمْحَاةٌ</div>
         <div class="latin">Mimhaatun</div>
         <div class="indonesian">Penghapus</div>
       </div>
-
-      <!-- 6. Kotak Pensil -->
       <div class="vocab-card">
         <img class="vocab-img" src="https://cdn.jsdelivr.net/gh/faudyadam77-tech/Kumpulan-gambar@main/kotak-pensil.jpeg" alt="Kotak Pensil" onerror="this.style.display='none'">
         <div class="arabic">طَلَّاسَةٌ</div>
         <div class="latin">Thallaasatun</div>
         <div class="indonesian">Kotak Pensil</div>
       </div>
-
     </div>
-
-    <!-- TOMBOL MULAI SOAL -->
     <div class="start-quiz-wrapper">
       <p>📚 Sudah hafal kosakatanya? Ayo uji kemampuanmu!</p>
-      <button class="btn-start-quiz" onclick="goToQuiz()"> Mengerjakan Soal</button>
+      <button class="btn-start-quiz" onclick="goToQuiz()">📝 Mengerjakan Soal</button>
     </div>
   </div>
 
-  <!-- ============================================ -->
-  <!-- FORM NAMA (MUNCUL SETELAH KLIK SOAL) -->
-  <!-- ============================================ -->
+  <!-- FORM NAMA -->
   <div class="card name-section" id="nameSection">
     <div class="card-title" style="justify-content:center;">
       <span class="icon">✍️</span>
       Isi Nama Sebelum Mengerjakan
     </div>
-    <label for="studentName"> Siapa namamu?</label>
+    <label for="studentName">👤 Siapa namamu?</label>
     <input type="text" id="studentName" class="name-input" placeholder="Ketik namamu di sini..." autocomplete="off">
     <br>
     <button class="btn-start" id="btnStart" onclick="startQuiz()" disabled>🚀 Mulai Mengerjakan!</button>
   </div>
 
-  <!-- ============================================ -->
   <!-- QUIZ -->
-  <!-- ============================================ -->
   <div class="card quiz-section" id="quizSection">
     <div class="card-title">
-      <span class="icon"></span>
+      <span class="icon">📝</span>
       Soal Pilihan Ganda
     </div>
-    <div class="progress-text" id="progressText">0 dari 10 soal dijawab</div>
+    <div class="progress-text" id="progressText">0 dari 13 soal dijawab</div>
     <div class="progress-bar">
       <div class="progress-fill" id="progressFill"></div>
     </div>
     <div id="questionsContainer"></div>
+
+    <!-- ESSAY -->
+    <div class="essay-section">
+      <div class="essay-title">
+        <span class="icon">✍️</span>
+        Soal Essay (Diperiksa oleh AI)
+      </div>
+      <div id="essayContainer"></div>
+    </div>
+
     <button class="btn-submit" id="btnSubmit" onclick="submitQuiz()" disabled>✅ Kirim Jawaban</button>
   </div>
 
-  <!-- ============================================ -->
   <!-- HASIL -->
-  <!-- ============================================ -->
   <div class="card result-section" id="resultSection">
     <div class="result-box">
       <div class="result-emoji" id="resultEmoji">🎉</div>
@@ -586,6 +669,10 @@
         Nama: <strong id="resultName">-</strong>
       </div>
       <div class="result-detail" id="resultDetail"></div>
+      <div class="essay-result-section" id="essayResultSection">
+        <div class="essay-result-title">✍️ Hasil Penilaian Essay oleh AI</div>
+        <div id="essayResultDetail"></div>
+      </div>
       <div style="margin-top:25px;">
         <button class="btn-back-material" onclick="backToMaterial()">📖 Lihat Materi Lagi</button>
         <button class="btn-retry" onclick="retryQuiz()">🔄 Coba Lagi</button>
@@ -594,7 +681,7 @@
   </div>
 
   <div class="footer">
-     Materi Kosakata Bahasa Arab — Alat Tulis | Dibuat untuk Siswa Kelas 2 SD
+    Materi Kosakata Bahasa Arab — Alat Tulis | Dibuat untuk Siswa Kelas 2 SD
   </div>
 </div>
 
@@ -602,8 +689,8 @@
 <div class="loading-overlay" id="loadingOverlay">
   <div class="loading-box">
     <div class="spinner"></div>
-    <p style="font-weight:700; color:#2d3436;">📤 Mengirim jawaban ke guru...</p>
-    <p style="color:#636e72; font-size:0.9em;">Mohon tunggu sebentar</p>
+    <p style="font-weight:700; color:#2d3436;" id="loadingText">📤 Mengirim jawaban...</p>
+    <p style="color:#636e72; font-size:0.9em;" id="loadingSubtext">Mohon tunggu sebentar (±15-30 detik)</p>
   </div>
 </div>
 
@@ -611,76 +698,45 @@
 // ============================================
 // URL GOOGLE APPS SCRIPT
 // ============================================
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby6zIPrT0QdsJyjxt7thYeN76KV6ufNRUgQDnRPsrku6ptMXZuhf6HgiV5EijpEf-1A/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxInZdIHfGSDfYDNHbo-fHY5fLQ33s60pvrV6iyyPjnQyhqu6ITpaYg3Dyu-Gfbetnjbg/exec';
 
 // ============================================
-// DATA SOAL
+// DATA SOAL PILIHAN GANDA
 // ============================================
 const questions = [
-  {
-    q: 'Apa arti dari kata <span class="arabic-q">قَلَمُ رَصَاصٍ</span> ?',
-    options: ['Penggaris', 'Pensil', 'Penghapus', 'Rautan'],
-    answer: 1
-  },
-  {
-    q: 'Apa arti dari kata <span class="arabic-q">مِسْطَرَةٌ</span> ?',
-    options: ['Spidol', 'Kotak Pensil', 'Penggaris', 'Pensil'],
-    answer: 2
-  },
-  {
-    q: 'Apa arti dari kata <span class="arabic-q">مِمْحَاةٌ</span> ?',
-    options: ['Penghapus', 'Rautan', 'Pensil', 'Penggaris'],
-    answer: 0
-  },
-  {
-    q: 'Apa arti dari kata <span class="arabic-q">مِبْرَاةٌ</span> ?',
-    options: ['Penggaris', 'Penghapus', 'Spidol', 'Rautan'],
-    answer: 3
-  },
-  {
-    q: 'Apa arti dari kata <span class="arabic-q">طَلَّاسَةٌ</span> ?',
-    options: ['Pensil', 'Kotak Pensil', 'Spidol', 'Penghapus'],
-    answer: 1
-  },
-  {
-    q: 'Apa arti dari kata <span class="arabic-q">قَلَمُ السَّبُّورَةِ</span> ?',
-    options: ['Pensil', 'Penggaris', 'Spidol Papan Tulis', 'Rautan'],
-    answer: 2
-  },
-  {
-    q: 'Bahasa Arab dari <strong>"Pensil"</strong> adalah...',
-    options: ['مِسْطَرَةٌ', 'مِمْحَاةٌ', 'قَلَمُ رَصَاصٍ', 'مِبْرَاةٌ'],
-    answer: 2
-  },
-  {
-    q: 'Bahasa Arab dari <strong>"Penggaris"</strong> adalah...',
-    options: ['مِسْطَرَةٌ', 'طَلَّاسَةٌ', 'مِمْحَاةٌ', 'قَلَمُ رَصَاصٍ'],
-    answer: 0
-  },
-  {
-    q: 'Bahasa Arab dari <strong>"Penghapus"</strong> adalah...',
-    options: ['مِبْرَاةٌ', 'مِمْحَاةٌ', 'طَلَّاسَةٌ', 'قَلَمُ السَّبُّورَةِ'],
-    answer: 1
-  },
-  {
-    q: 'Bahasa Arab dari <strong>"Kotak Pensil"</strong> adalah...',
-    options: ['مِسْطَرَةٌ', 'مِبْرَاةٌ', 'قَلَمُ رَصَاصٍ', 'طَلَّاسَةٌ'],
-    answer: 3
-  }
+  { q: 'Apa arti dari kata <span class="arabic-q">قَلَمُ رَصَاصٍ</span> ?', options: ['Penggaris', 'Pensil', 'Penghapus', 'Rautan'], answer: 1 },
+  { q: 'Apa arti dari kata <span class="arabic-q">مِسْطَرَةٌ</span> ?', options: ['Spidol', 'Kotak Pensil', 'Penggaris', 'Pensil'], answer: 2 },
+  { q: 'Apa arti dari kata <span class="arabic-q">مِمْحَاةٌ</span> ?', options: ['Penghapus', 'Rautan', 'Pensil', 'Penggaris'], answer: 0 },
+  { q: 'Apa arti dari kata <span class="arabic-q">مِبْرَاةٌ</span> ?', options: ['Penggaris', 'Penghapus', 'Spidol', 'Rautan'], answer: 3 },
+  { q: 'Apa arti dari kata <span class="arabic-q">طَلَّاسَةٌ</span> ?', options: ['Pensil', 'Kotak Pensil', 'Spidol', 'Penghapus'], answer: 1 },
+  { q: 'Apa arti dari kata <span class="arabic-q">قَلَمُ السَّبُّورَةِ</span> ?', options: ['Pensil', 'Penggaris', 'Spidol Papan Tulis', 'Rautan'], answer: 2 },
+  { q: 'Bahasa Arab dari <strong>"Pensil"</strong> adalah...', options: ['مِسْطَرَةٌ', 'مِمْحَاةٌ', 'قَلَمُ رَصَاصٍ', 'مِبْرَاةٌ'], answer: 2 },
+  { q: 'Bahasa Arab dari <strong>"Penggaris"</strong> adalah...', options: ['مِسْطَرَةٌ', 'طَلَّاسَةٌ', 'مِمْحَاةٌ', 'قَلَمُ رَصَاصٍ'], answer: 0 },
+  { q: 'Bahasa Arab dari <strong>"Penghapus"</strong> adalah...', options: ['مِبْرَاةٌ', 'مِمْحَاةٌ', 'طَلَّاسَةٌ', 'قَلَمُ السَّبُّورَةِ'], answer: 1 },
+  { q: 'Bahasa Arab dari <strong>"Kotak Pensil"</strong> adalah...', options: ['مِسْطَرَةٌ', 'مِبْرَاةٌ', 'قَلَمُ رَصَاصٍ', 'طَلَّاسَةٌ'], answer: 3 }
+];
+
+// ============================================
+// DATA SOAL ESSAY
+// ============================================
+const essayQuestions = [
+  { q: 'Sebutkan 3 alat tulis dalam bahasa Arab beserta artinya dalam bahasa Indonesia!', hint: 'Contoh: قَلَمُ رَصَاصٍ = Pensil', maxScore: 10 },
+  { q: 'Tuliskan bahasa Arab dari "penggaris" dan "penghapus" beserta cara membacanya (latin)!', hint: 'Contoh format: مِسْطَرَةٌ - Mistharatun', maxScore: 10 },
+  { q: 'Apa arti dari kata قَلَمُ رَصَاصٍ dan مِسْطَرَةٌ dalam bahasa Indonesia? Jelaskan!', hint: 'Tuliskan arti masing-masing kata', maxScore: 10 }
 ];
 
 const letters = ['A', 'B', 'C', 'D'];
 let answeredCount = 0;
 
 // ============================================
-// ENABLE BUTTON SAAT NAMA DIISI
+// EVENT LISTENERS
 // ============================================
 document.getElementById('studentName').addEventListener('input', function() {
   document.getElementById('btnStart').disabled = this.value.trim().length === 0;
 });
 
 // ============================================
-// RENDER SOAL
+// RENDER SOAL PILIHAN GANDA
 // ============================================
 function renderQuestions() {
   const container = document.getElementById('questionsContainer');
@@ -707,18 +763,52 @@ function renderQuestions() {
 }
 
 // ============================================
-// TRACK JAWABAN
+// RENDER SOAL ESSAY
+// ============================================
+function renderEssayQuestions() {
+  const container = document.getElementById('essayContainer');
+  container.innerHTML = '';
+  essayQuestions.forEach((eq, i) => {
+    container.innerHTML += `
+      <div class="essay-card">
+        <div class="question-text">
+          <span class="question-number">${i + 11}</span>
+          ${eq.q}
+        </div>
+        <textarea class="essay-textarea" id="essay_${i}" placeholder="Tulis jawabanmu di sini..." oninput="updateProgress()"></textarea>
+        <div class="essay-hint">💡 ${eq.hint}</div>
+      </div>`;
+  });
+}
+
+// ============================================
+// TRACK PROGRESS
 // ============================================
 function onAnswer(qIndex) {
   document.getElementById(`qCard_${qIndex}`).classList.add('answered');
   answeredCount = document.querySelectorAll('input[type="radio"]:checked').length;
-  document.getElementById('progressText').textContent = `${answeredCount} dari 10 soal dijawab`;
-  document.getElementById('progressFill').style.width = `${(answeredCount / 10) * 100}%`;
-  document.getElementById('btnSubmit').disabled = answeredCount < 10;
+  updateProgress();
+}
+
+function updateProgress() {
+  const essayFilled = essayQuestions.filter((_, i) => {
+    const ta = document.getElementById(`essay_${i}`);
+    return ta && ta.value.trim().length > 0;
+  }).length;
+  const total = answeredCount + essayFilled;
+  document.getElementById('progressText').textContent = `${total} dari 13 soal dijawab`;
+  document.getElementById('progressFill').style.width = `${(total / 13) * 100}%`;
+
+  const allMCQ = answeredCount === questions.length;
+  const allEssay = essayQuestions.every((_, i) => {
+    const ta = document.getElementById(`essay_${i}`);
+    return ta && ta.value.trim().length > 0;
+  });
+  document.getElementById('btnSubmit').disabled = !(allMCQ && allEssay);
 }
 
 // ============================================
-// FLOW 1: KLIK "Mengerjakan Soal" → Sembunyikan Materi, Tampilkan Form Nama
+// NAVIGATION
 // ============================================
 function goToQuiz() {
   document.getElementById('materialSection').style.display = 'none';
@@ -727,9 +817,6 @@ function goToQuiz() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// ============================================
-// FLOW 2: Mulai Kuis
-// ============================================
 function startQuiz() {
   const name = document.getElementById('studentName').value.trim();
   if (!name) return;
@@ -737,72 +824,116 @@ function startQuiz() {
   document.getElementById('quizSection').style.display = 'block';
   document.getElementById('quizSection').classList.add('fade-in');
   renderQuestions();
+  renderEssayQuestions();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function backToMaterial() {
+  document.getElementById('resultSection').style.display = 'none';
+  document.getElementById('materialSection').style.display = 'block';
+  document.getElementById('materialSection').classList.add('fade-in');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function retryQuiz() {
+  answeredCount = 0;
+  document.getElementById('resultSection').style.display = 'none';
+  document.getElementById('quizSection').style.display = 'block';
+  document.getElementById('quizSection').classList.add('fade-in');
+  document.getElementById('progressText').textContent = '0 dari 13 soal dijawab';
+  document.getElementById('progressFill').style.width = '0%';
+  document.getElementById('btnSubmit').disabled = true;
+  renderQuestions();
+  renderEssayQuestions();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // ============================================
-// KIRIM JAWABAN
+// SUBMIT → KIRIM KE GOOGLE APPS SCRIPT
 // ============================================
-function submitQuiz() {
+async function submitQuiz() {
   const name = document.getElementById('studentName').value.trim();
   if (!name) return;
 
+  // Kumpulkan jawaban PG
   const answers = [];
-  let correct = 0;
+  let mcqCorrect = 0;
   questions.forEach((q, i) => {
     const selected = document.querySelector(`input[name="q${i}"]:checked`);
     answers.push(selected ? parseInt(selected.value) : -1);
-    if (selected && parseInt(selected.value) === q.answer) correct++;
+    if (selected && parseInt(selected.value) === q.answer) mcqCorrect++;
   });
 
-  const score = correct * 10;
+  // Kumpulkan jawaban essay
+  const essayAnswers = essayQuestions.map((_, i) => {
+    const ta = document.getElementById(`essay_${i}`);
+    return ta ? ta.value.trim() : '';
+  });
 
+  const mcqScore = mcqCorrect * 10;
+
+  // Simpan jawaban essay untuk ditampilkan di hasil nanti
+  window._lastEssayAnswers = essayAnswers;
+
+  // Tampilkan loading
   document.getElementById('loadingOverlay').classList.add('active');
+  document.getElementById('loadingText').textContent = '🤖 AI sedang memeriksa jawaban essay...';
+  document.getElementById('loadingSubtext').textContent = 'Mohon tunggu sebentar (±15-30 detik)';
 
-  const payload = {
-    nama: name,
-    jawaban: answers.map(a => letters[a] || '-'),
-    nilai: score
-  };
+  try {
+    const response = await fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({
+        nama: name,
+        jawaban_pg: answers.map(a => letters[a] || '-'),
+        jawaban_essay: essayAnswers,
+        soal_essay: essayQuestions.map(eq => eq.q),
+        nilai_pg: mcqScore,
+        jumlah_benar_pg: mcqCorrect
+      })
+    });
 
-  fetch(GOOGLE_SCRIPT_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  }).then(() => {
-    showResult(name, answers, correct, score);
-  }).catch(() => {
-    showResult(name, answers, correct, score);
-  });
+    const result = await response.json();
+
+    const essayScores = result.essayScores || [0, 0, 0];
+    const essayFeedback = result.essayFeedback || ['', '', ''];
+    const overallComment = result.overallComment || '';
+    const essayTotal = essayScores.reduce((a, b) => a + b, 0);
+    const finalScore = Math.min(100, Math.round(mcqScore * 0.7 + essayTotal * 1));
+
+    showResult(name, answers, mcqCorrect, mcqScore, essayScores, essayFeedback, overallComment, finalScore);
+
+  } catch (error) {
+    console.error('Error:', error);
+    document.getElementById('loadingOverlay').classList.remove('active');
+    alert('⚠️ Terjadi kesalahan saat mengirim jawaban. Silakan coba lagi.\n\nDetail: ' + error.message);
+  }
 }
 
 // ============================================
 // TAMPILKAN HASIL
 // ============================================
-function showResult(name, answers, correct, score) {
+function showResult(name, answers, mcqCorrect, mcqScore, essayScores, essayFeedback, overallComment, finalScore) {
   document.getElementById('loadingOverlay').classList.remove('active');
   document.getElementById('quizSection').style.display = 'none';
   document.getElementById('resultSection').style.display = 'block';
   document.getElementById('resultSection').classList.add('fade-in');
 
   document.getElementById('resultName').textContent = name;
-  document.getElementById('resultScore').textContent = score;
+  document.getElementById('resultScore').textContent = finalScore;
 
   let emoji, msg, cls;
-  if (score >= 80) {
-    emoji = '🏆'; msg = 'Luar Biasa! Kamu Hebat! 🌟'; cls = 'excellent';
-  } else if (score >= 60) {
-    emoji = '😊'; msg = 'Bagus! Terus Belajar Ya! 💪'; cls = 'good';
-  } else {
-    emoji = '📚'; msg = 'Ayo Belajar Lagi! Kamu Pasti Bisa! '; cls = 'try-again';
-  }
+  if (finalScore >= 80) { emoji = '🏆'; msg = 'Luar Biasa! Kamu Hebat! 🌟'; cls = 'excellent'; }
+  else if (finalScore >= 60) { emoji = '😊'; msg = 'Bagus! Terus Belajar Ya! 💪'; cls = 'good'; }
+  else { emoji = '📚'; msg = 'Ayo Belajar Lagi! Kamu Pasti Bisa! '; cls = 'try-again'; }
   document.getElementById('resultEmoji').textContent = emoji;
   const msgEl = document.getElementById('resultMessage');
   msgEl.textContent = msg;
   msgEl.className = 'result-message ' + cls;
 
-  let detailHTML = '<h3 style="margin-bottom:15px; color:#2d3436;">📋 Detail Jawaban:</h3>';
+  // Detail PG
+  let detailHTML = `<h3 style="margin-bottom:15px; color:#2d3436;">📋 Detail Pilihan Ganda (Skor: ${mcqScore}/100):</h3>`;
   questions.forEach((q, i) => {
     const isCorrect = answers[i] === q.answer;
     detailHTML += `
@@ -813,31 +944,33 @@ function showResult(name, answers, correct, score) {
   });
   document.getElementById('resultDetail').innerHTML = detailHTML;
 
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+  // Detail Essay
+  const savedAnswers = window._lastEssayAnswers || [];
+  let essayHTML = '';
+  essayQuestions.forEach((eq, i) => {
+    const score = essayScores[i] || 0;
+    const feedback = essayFeedback[i] || 'Tidak ada feedback';
+    const userAnswer = savedAnswers[i] || '';
+    essayHTML += `
+      <div class="essay-result-item">
+        <div class="essay-q">Soal ${i + 11}: ${eq.q}</div>
+        <div class="essay-answer">Jawaban kamu: "${userAnswer}"</div>
+        <div class="essay-feedback">
+          <strong>📝 Feedback AI:</strong><br>
+          ${feedback}
+        </div>
+        <div class="essay-score-badge">Skor: ${score}/10</div>
+      </div>`;
+  });
+  if (overallComment) {
+    essayHTML += `
+      <div style="background:#e3f2fd; padding:15px; border-radius:12px; margin-top:15px; border-left:4px solid #2196f3;">
+        <strong>💬 Komentar Keseluruhan:</strong><br>
+        ${overallComment}
+      </div>`;
+  }
+  document.getElementById('essayResultDetail').innerHTML = essayHTML;
 
-// ============================================
-// FLOW 3: Kembali ke Materi (dari hasil)
-// ============================================
-function backToMaterial() {
-  document.getElementById('resultSection').style.display = 'none';
-  document.getElementById('materialSection').style.display = 'block';
-  document.getElementById('materialSection').classList.add('fade-in');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// ============================================
-// FLOW 4: Coba Lagi (reset quiz, nama tetap)
-// ============================================
-function retryQuiz() {
-  answeredCount = 0;
-  document.getElementById('resultSection').style.display = 'none';
-  document.getElementById('quizSection').style.display = 'block';
-  document.getElementById('quizSection').classList.add('fade-in');
-  document.getElementById('progressText').textContent = '0 dari 10 soal dijawab';
-  document.getElementById('progressFill').style.width = '0%';
-  document.getElementById('btnSubmit').disabled = true;
-  renderQuestions();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
