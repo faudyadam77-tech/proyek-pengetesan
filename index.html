@@ -617,8 +617,8 @@
       </div>
     </div>
     <div class="start-quiz-wrapper">
-      <p>📚 Sudah hafal kosakatanya? Ayo uji kemampuanmu!</p>
-      <button class="btn-start-quiz" onclick="goToQuiz()">📝 Mengerjakan Soal</button>
+      <p> Sudah hafal kosakatanya? Ayo uji kemampuanmu!</p>
+      <button class="btn-start-quiz" onclick="goToQuiz()"> Mengerjakan Soal</button>
     </div>
   </div>
 
@@ -689,8 +689,8 @@
 <div class="loading-overlay" id="loadingOverlay">
   <div class="loading-box">
     <div class="spinner"></div>
-    <p style="font-weight:700; color:#2d3436;" id="loadingText">📤 Mengirim jawaban...</p>
-    <p style="color:#636e72; font-size:0.9em;" id="loadingSubtext">Mohon tunggu sebentar (±15-30 detik)</p>
+    <p style="font-weight:700; color:#2d3436;" id="loadingText">⏳ Mengirim jawaban...</p>
+    <p style="color:#636e72; font-size:0.9em;" id="loadingSubtext">Mohon tunggu, sedang diproses server (±15-30 detik)</p>
   </div>
 </div>
 
@@ -877,13 +877,18 @@ async function submitQuiz() {
 
   // Tampilkan loading
   document.getElementById('loadingOverlay').classList.add('active');
-  document.getElementById('loadingText').textContent = '🤖 AI sedang memeriksa jawaban essay...';
-  document.getElementById('loadingSubtext').textContent = 'Mohon tunggu sebentar (±15-30 detik)';
+  document.getElementById('loadingText').textContent = '⏳ Mengirim jawaban...';
+  document.getElementById('loadingSubtext').textContent = 'Mohon tunggu, sedang diproses server (±15-30 detik)';
+
+  // Disable tombol submit agar tidak diklik 2x
+  document.getElementById('btnSubmit').disabled = true;
 
   try {
     const response = await fetch(GOOGLE_SCRIPT_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      headers: {
+        'Content-Type': 'text/plain;charset=utf-8'
+      },
       body: JSON.stringify({
         nama: name,
         jawaban_pg: answers.map(a => letters[a] || '-'),
@@ -891,8 +896,13 @@ async function submitQuiz() {
         soal_essay: essayQuestions.map(eq => eq.q),
         nilai_pg: mcqScore,
         jumlah_benar_pg: mcqCorrect
-      })
+      }),
+      redirect: 'follow'
     });
+
+    // Update loading text saat GS mulai memproses
+    document.getElementById('loadingText').textContent = '🤖 Jawaban sedang diperiksa oleh AI...';
+    document.getElementById('loadingSubtext').textContent = 'Mohon tunggu sebentar...';
 
     const result = await response.json();
 
@@ -907,7 +917,17 @@ async function submitQuiz() {
   } catch (error) {
     console.error('Error:', error);
     document.getElementById('loadingOverlay').classList.remove('active');
-    alert('⚠️ Terjadi kesalahan saat mengirim jawaban. Silakan coba lagi.\n\nDetail: ' + error.message);
+    document.getElementById('btnSubmit').disabled = false;
+    
+    // Tampilkan pesan error yang lebih informatif
+    alert(
+      '⚠️ Gagal mengirim jawaban.\n\n' +
+      'Kemungkinan penyebab:\n' +
+      '1. Koneksi internet tidak stabil\n' +
+      '2. Server sedang sibuk, coba lagi dalam 10 detik\n' +
+      '3. Deployment Google Apps Script perlu diperbarui\n\n' +
+      'Detail: ' + error.message
+    );
   }
 }
 
@@ -933,7 +953,7 @@ function showResult(name, answers, mcqCorrect, mcqScore, essayScores, essayFeedb
   msgEl.className = 'result-message ' + cls;
 
   // Detail PG
-  let detailHTML = `<h3 style="margin-bottom:15px; color:#2d3436;">📋 Detail Pilihan Ganda (Skor: ${mcqScore}/100):</h3>`;
+  let detailHTML = `<h3 style="margin-bottom:15px; color:#2d3436;"> Detail Pilihan Ganda (Skor: ${mcqScore}/100):</h3>`;
   questions.forEach((q, i) => {
     const isCorrect = answers[i] === q.answer;
     detailHTML += `
