@@ -1,396 +1,326 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quiz Bahasa Arab - Kelas 4 SD | Perkenalan Identitas di Sekolah</title>
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
-  body {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
-    padding: 20px;
-    color: #333;
-  }
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    overflow: hidden;
-  }
-  .header {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    color: white;
-    padding: 30px;
-    text-align: center;
-  }
-  .header h1 { font-size: 1.8em; margin-bottom: 8px; }
-  .header p { font-size: 1em; opacity: 0.95; }
-  .content { padding: 30px; }
-  .student-info {
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: 12px;
-    margin-bottom: 25px;
-    border-left: 5px solid #667eea;
-  }
-  .form-group { margin-bottom: 15px; }
-  .form-group label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 6px;
-    color: #444;
-  }
-  .form-group input {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 1em;
-    transition: border 0.3s;
-  }
-  .form-group input:focus {
-    outline: none;
-    border-color: #667eea;
-  }
-  .section-title {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 12px 20px;
-    border-radius: 10px;
-    margin: 25px 0 15px 0;
-    font-size: 1.1em;
-    font-weight: 600;
-  }
-  .question-card {
-    background: #fafafa;
-    padding: 18px;
-    border-radius: 12px;
-    margin-bottom: 15px;
-    border-left: 4px solid #f5576c;
-  }
-  .question-card p.q-text {
-    font-weight: 600;
-    margin-bottom: 12px;
-    font-size: 1.05em;
-  }
-  .arabic-text {
-    font-family: 'Traditional Arabic', 'Scheherazade', serif;
-    font-size: 1.4em;
-    direction: rtl;
-    background: #fff3cd;
-    padding: 10px 15px;
-    border-radius: 8px;
-    display: inline-block;
-    margin: 8px 0;
-  }
-  .options label {
-    display: block;
-    padding: 10px 15px;
-    margin: 6px 0;
-    background: white;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .options label:hover {
-    border-color: #667eea;
-    background: #f0f4ff;
-  }
-  .options input[type="radio"] { margin-right: 10px; }
-  textarea {
-    width: 100%;
-    min-height: 120px;
-    padding: 12px;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 1em;
-    font-family: inherit;
-    resize: vertical;
-  }
-  textarea:focus {
-    outline: none;
-    border-color: #667eea;
-  }
-  .submit-btn {
-    width: 100%;
-    padding: 16px;
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    color: white;
-    border: none;
-    border-radius: 12px;
-    font-size: 1.1em;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .submit-btn:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(245,87,108,0.4);
-  }
-  .submit-btn:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-  }
-  .loading {
-    display: none;
-    text-align: center;
-    padding: 20px;
-  }
-  .loading.active { display: block; }
-  .spinner {
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #f5576c;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 1s linear infinite;
-    margin: 0 auto 10px;
-  }
-  @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-  .success-message, .error-message {
-    display: none;
-    padding: 20px;
-    border-radius: 12px;
-    margin-top: 20px;
-    text-align: center;
-  }
-  .success-message { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-  .error-message { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
-  .success-message.active, .error-message.active { display: block; }
-  .score-preview {
-    background: #e7f3ff;
-    padding: 15px;
-    border-radius: 10px;
-    margin-top: 15px;
-    border-left: 4px solid #2196F3;
-  }
-  @media (max-width: 600px) {
-    .header h1 { font-size: 1.4em; }
-    .content { padding: 20px; }
-    .arabic-text { font-size: 1.2em; }
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 Belajar Bahasa Arab - Alat Sekolah</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 { text-align: center; color: #ff6b6b; font-size: 2.5em; margin-bottom: 10px; text-shadow: 3px 3px 0px #ffd93d; }
+        h2 { color: #4ecdc4; text-align: center; margin-bottom: 20px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-size: 1.2em; color: #555; margin-bottom: 8px; font-weight: bold; }
+        input[type="text"], select {
+            width: 100%; padding: 15px; font-size: 1.1em;
+            border: 3px solid #4ecdc4; border-radius: 15px; font-family: inherit;
+        }
+        input[type="text"]:focus, select:focus { outline: none; border-color: #ff6b6b; box-shadow: 0 0 10px rgba(255, 107, 107, 0.3); }
+        .btn {
+            background: linear-gradient(135deg, #ff6b6b, #ffd93d); color: white;
+            padding: 15px 40px; font-size: 1.3em; border: none; border-radius: 50px;
+            cursor: pointer; font-family: inherit; font-weight: bold;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4); transition: transform 0.2s;
+        }
+        .btn:hover { transform: scale(1.05); }
+        .materi-box { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); padding: 20px; border-radius: 20px; margin: 20px 0; }
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .vocab-card {
+            background: white; padding: 20px; border-radius: 15px; text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.2s;
+        }
+        .vocab-card:hover { transform: translateY(-5px); }
+        
+        /* Gaya untuk Gambar Kosakata */
+        .vocab-img {
+            width: 100%;
+            height: 130px;
+            object-fit: contain;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            padding: 10px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+        }
+
+        .vocab-card .arabic { font-size: 2em; color: #ff6b6b; margin-bottom: 5px; }
+        .vocab-card .latin { font-size: 1.1em; color: #666; font-style: italic; margin-bottom: 5px; }
+        .vocab-card .indonesian { font-size: 1.2em; color: #4ecdc4; font-weight: bold; }
+        
+        .quiz-section { margin-top: 30px; }
+        .question {
+            background: #fff5f5; padding: 20px; border-radius: 15px;
+            margin-bottom: 20px; border-left: 5px solid #ff6b6b;
+        }
+        .question-text { font-size: 1.3em; color: #333; margin-bottom: 15px; font-weight: bold; }
+        
+        /* Opsi Jawaban */
+        .options { display: flex; flex-direction: column; gap: 10px; }
+        .option {
+            background: white; border-radius: 10px; cursor: pointer;
+            border: 2px solid #ddd; transition: all 0.2s; position: relative; overflow: hidden;
+        }
+        .option input[type="radio"] {
+            position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0;
+        }
+        .option label {
+            display: block; padding: 15px; cursor: pointer; font-size: 1.1em;
+            width: 100%; height: 100%; box-sizing: border-box; user-select: none;
+        }
+        .option:hover { background: #f0f0f0; border-color: #4ecdc4; }
+        
+        /* Warna saat dipilih */
+        .option.selected {
+            background-color: #e0f7fa; border-color: #4ecdc4; border-width: 3px;
+        }
+        .option.selected label { font-weight: bold; color: #00796b; }
+
+        .result-box {
+            background: linear-gradient(135deg, #ffd93d, #ff6b6b);
+            padding: 30px; border-radius: 20px; text-align: center;
+            margin-top: 30px; display: none;
+        }
+        .result-box h2 { color: white; font-size: 2.5em; margin-bottom: 20px; }
+        .score { font-size: 4em; color: white; font-weight: bold; text-shadow: 3px 3px 0px rgba(0,0,0,0.2); }
+        .emoji { font-size: 3em; margin: 20px 0; }
+        .hidden { display: none !important; }
+        .section-title {
+            background: linear-gradient(135deg, #667eea, #764ba2); color: white;
+            padding: 15px; border-radius: 15px; margin: 20px 0; text-align: center; font-size: 1.5em;
+        }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .bounce { animation: bounce 1s infinite; }
+    </style>
 </head>
 <body>
-<div class="container">
-  <div class="header">
-    <h1>📚 Quiz Bahasa Arab</h1>
-    <p>Kelas 4 SD - Tema: Perkenalan Identitas di Sekolah (التَّعَارُفُ فِي المَدْرَسَةِ)</p>
-  </div>
+    <div class="container">
+        <h1 class="bounce"> Belajar Bahasa Arab 🎨</h1>
+        <h2>Alat-Alat Sekolah (الأَدَوَاتُ الْمَدْرَسِيَّةَةُ)</h2>
 
-  <div class="content">
-    <form id="quizForm">
-      <!-- Data Siswa -->
-      <div class="student-info">
-        <div class="form-group">
-          <label for="nama">👤 Nama Lengkap *</label>
-          <input type="text" id="nama" name="nama" required placeholder="Masukkan nama lengkap">
+        <!-- Form Data Siswa -->
+        <div id="studentForm">
+            <div class="section-title">✏️ Isi Data Diri</div>
+            <div class="form-group">
+                <label>👤 Nama Lengkap:</label>
+                <input type="text" id="studentName" placeholder="Tulis namamu di sini..." required>
+            </div>
+            <div class="form-group">
+                <label>🏫 Kelas:</label>
+                <select id="studentClass" required>
+                    <option value="">-- Pilih Kelas --</option>
+                    <option value="2A">Kelas 2A</option>
+                    <option value="2B">Kelas 2B</option>
+                </select>
+            </div>
+            <button class="btn" onclick="startLearning()">🚀 Mulai Belajar!</button>
         </div>
-        <div class="form-group">
-          <label for="kelas">🏫 Kelas *</label>
-          <input type="text" id="kelas" name="kelas" required placeholder="Contoh: 4A">
+
+        <!-- Materi & Quiz -->
+        <div id="learningSection" class="hidden">
+            
+            <!-- Bagian Materi -->
+            <div id="materiSection">
+                <div class="section-title"> Kosakata Baru</div>
+                <div class="materi-box">
+                    <div class="vocab-grid">
+                        <div class="vocab-card">
+                            <img src="https://cdn.jsdelivr.net/gh/faudyadam77-tech/Kumpulan-gambar@main/kapur.jpeg" alt="Kapur" class="vocab-img">
+                            <div class="arabic">طَبَاشِيرٌ</div>
+                            <div class="latin">Thabāshīrun</div>
+                            <div class="indonesian">Kapur Tulis</div>
+                        </div>
+                        <div class="vocab-card">
+                            <img src="https://cdn.jsdelivr.net/gh/faudyadam77-tech/Kumpulan-gambar@main/kotak-pensil.jpeg" alt="Kotak Pensil" class="vocab-img">
+                            <div class="arabic">مِقْلَمَةٌ</div>
+                            <div class="latin">Miqlamatun</div>
+                            <div class="indonesian">Kotak Pensil</div>
+                        </div>
+                        <div class="vocab-card">
+                            <img src="https://cdn.jsdelivr.net/gh/faudyadam77-tech/Kumpulan-gambar@main/tas-sekolah.jpeg" alt="Tas Sekolah" class="vocab-img">
+                            <div class="arabic">حَقِيبَةٌ</div>
+                            <div class="latin">aqībatun</div>
+                            <div class="indonesian">Tas Sekolah</div>
+                        </div>
+                        <div class="vocab-card">
+                            <img src="https://cdn.jsdelivr.net/gh/faudyadam77-tech/Kumpulan-gambar@main/tipx.jpeg" alt="Tip-X" class="vocab-img">
+                            <div class="arabic">مِزْيَلٌ</div>
+                            <div class="latin">Mizyalun</div>
+                            <div class="indonesian">Tip-X</div>
+                        </div>
+                        <div class="vocab-card">
+                            <img src="https://cdn.jsdelivr.net/gh/faudyadam77-tech/Kumpulan-gambar@main/jangka.jpeg" alt="Jangka" class="vocab-img">
+                            <div class="arabic">فِرْجَارٌ</div>
+                            <div class="latin">Firjārun</div>
+                            <div class="indonesian">Jangka</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin: 30px 0;">
+                    <button class="btn" onclick="startQuiz()">📝 Mulai Mengerjakan Soal!</button>
+                </div>
+            </div>
+
+            <!-- Bagian Soal -->
+            <div id="quizContainer" class="hidden">
+                <div class="section-title">📝 Soal Pilihan Ganda</div>
+                <div class="quiz-section" id="quizSection"></div>
+                <button class="btn" onclick="submitQuiz()" style="width: 100%; margin-top: 20px;">✅ Selesai & Lihat Nilai</button>
+            </div>
         </div>
-        <div class="form-group">
-          <label for="email"> Email (Opsional)</label>
-          <input type="email" id="email" name="email" placeholder="email@contoh.com">
+
+        <!-- Hasil Nilai -->
+        <div id="resultSection" class="result-box">
+            <h2>🎉 Hasil Nilai </h2>
+            <div class="emoji" id="resultEmoji"></div>
+            <div class="score" id="scoreDisplay"></div>
+            <p style="color: white; font-size: 1.5em; margin-top: 20px;" id="resultMessage"></p>
+            <p style="color: white; font-size: 1.2em; margin-top: 10px;" id="resultDetails"></p>
         </div>
-      </div>
-
-      <!-- BAGIAN A: PILIHAN GANDA -->
-      <div class="section-title">📝 Bagian A: Pilihan Ganda (5 soal × 10 poin = 50 poin)</div>
-
-      <div class="question-card">
-        <p class="q-text">1. Apa arti dari kata "<span class="arabic-text">رَئِيْسُ المَدْرَسَةِ</span>"?</p>
-        <div class="options">
-          <label><input type="radio" name="pg1" value="a" required> a. Pustakawan</label>
-          <label><input type="radio" name="pg1" value="b"> b. Kepala Sekolah</label>
-          <label><input type="radio" name="pg1" value="c"> c. Penjaga</label>
-          <label><input type="radio" name="pg1" value="d"> d. Penjual</label>
-        </div>
-      </div>
-
-      <div class="question-card">
-        <p class="q-text">2. Kata ganti "<span class="arabic-text">هُوَ</span>" digunakan untuk...</p>
-        <div class="options">
-          <label><input type="radio" name="pg2" value="a" required> a. Saya</label>
-          <label><input type="radio" name="pg2" value="b"> b. Kamu (perempuan)</label>
-          <label><input type="radio" name="pg2" value="c"> c. Dia (laki-laki)</label>
-          <label><input type="radio" name="pg2" value="d"> d. Dia (perempuan)</label>
-        </div>
-      </div>
-
-      <div class="question-card">
-        <p class="q-text">3. Bentuk perempuan dari kata "<span class="arabic-text">بَائِع</span>" (penjual) adalah...</p>
-        <div class="options">
-          <label><input type="radio" name="pg3" value="a" required> a. بَوَّاب</label>
-          <label><input type="radio" name="pg3" value="b"> b. كَنَّاس</label>
-          <label><input type="radio" name="pg3" value="c"> c. بَائِعَة</label>
-          <label><input type="radio" name="pg3" value="d"> d. حَارِسَة</label>
-        </div>
-      </div>
-
-      <div class="question-card">
-        <p class="q-text">4. Dalam teks bacaan, siapa yang merupakan "<span class="arabic-text">أَمِيْنُ المَكْتَبَةِ</span>" (pustakawan)?</p>
-        <div class="options">
-          <label><input type="radio" name="pg4" value="a" required> a. Hasan</label>
-          <label><input type="radio" name="pg4" value="b"> b. Hasyim</label>
-          <label><input type="radio" name="pg4" value="c"> c. Iwan</label>
-          <label><input type="radio" name="pg4" value="d"> d. Laila</label>
-        </div>
-      </div>
-
-      <div class="question-card">
-        <p class="q-text">5. Kalimat "<span class="arabic-text">أَنْتِ سُوسِي، أَنْتِ بَائِعَةٌ</span>" berarti...</p>
-        <div class="options">
-          <label><input type="radio" name="pg5" value="a" required> a. Kamu (L) adalah Susi, kamu adalah penjual</label>
-          <label><input type="radio" name="pg5" value="b"> b. Dia (P) adalah Susi, dia adalah penjual</label>
-          <label><input type="radio" name="pg5" value="c"> c. Kamu (P) adalah Susi, kamu adalah penjual</label>
-          <label><input type="radio" name="pg5" value="d"> d. Saya adalah Susi, saya adalah penjual</label>
-        </div>
-      </div>
-
-      <!-- BAGIAN B: ESSAY -->
-      <div class="section-title">✍️ Bagian B: Essay (2 soal × 25 poin = 50 poin)</div>
-
-      <div class="question-card">
-        <p class="q-text">1. Terjemahkan kalimat berikut ke dalam bahasa Indonesia: <br>
-        <span class="arabic-text">هِيَ لَيْلَى، هِيَ حَارِسَةٌ. هِيَ مِنْ سُوْرَكَرْتَا.</span></p>
-        <textarea name="essay1" required placeholder="Tulis terjemahan Anda di sini..."></textarea>
-      </div>
-
-      <div class="question-card">
-        <p class="q-text">2. Buatlah kalimat perkenalan diri dalam bahasa Arab menggunakan data berikut:<br>
-        • Nama: Ahmad (أَحْمَدُ)<br>
-        • Profesi: Petugas kebersihan laki-laki (كََنَّاسٌ)<br>
-        • Asal: Bandung (بَانْدُونْج)</p>
-        <textarea name="essay2" required placeholder="Tulis kalimat bahasa Arab Anda di sini..."></textarea>
-      </div>
-
-      <div class="score-preview" id="scorePreview">
-        <strong> Preview Skor PG:</strong> <span id="pgScore">0</span> / 50 poin
-      </div>
-
-      <button type="submit" class="submit-btn" id="submitBtn">🚀 Kirim Jawaban</button>
-    </form>
-
-    <div class="loading" id="loading">
-      <div class="spinner"></div>
-      <p>Mengirim jawaban & menilai essay dengan AI...</p>
-      <p style="font-size:0.9em;color:#666;">Mohon tunggu, ini bisa memakan waktu 30-60 detik.</p>
     </div>
 
-    <div class="success-message" id="successMsg">
-      <h3>✅ Jawaban Berhasil Dikirim!</h3>
-      <p>Terima kasih. Nilai essay Anda sedang dinilai oleh AI dan akan tersedia di spreadsheet guru.</p>
-    </div>
+    <script>
+        const questions = [
+            { question: "طَبَاشِيْرٌ artinya adalah...", options: ["Tas Sekolah", "Kapur Tulis", "Kotak Pensil"], correct: 1 },
+            { question: "Bahasa Arab dari 'Tas Sekolah' adalah...", options: ["حَقِيْبَةٌ", "مِقْلَمَةٌ", "فِرْجَارٌ"], correct: 0 },
+            { question: "مِقْلَمَةٌ dibaca...", options: ["Miqlamatun", "Ḥaqībatun", "Firjārun"], correct: 0 },
+            { question: "Alat untuk menggambar lingkaran dalam bahasa Arab disebut...", options: ["مِزْيَلٌ", "طَبَاشِيْرٌ", "فِرْجَارٌ"], correct: 2 },
+            { question: "فِرْجَارٌ artinya adalah...", options: ["Jangka", "Tip-X", "Kapur Tulis"], correct: 0 },
+            { question: "Cairan penghapus (Tip-X) dalam bahasa Arab adalah...", options: ["حَقِيْبَةٌ", "مِزْيَلٌ", "مِقْلَمَةٌ"], correct: 1 },
+            { question: "حَقِيْبَةٌ dibaca...", options: ["Thabāshīrun", "Mizyalun", "Ḥaqībatun"], correct: 2 },
+            { question: "Bahasa Arab dari kapur tulis adalah...", options: ["طَبَاشِيْرٌ", "فِرْجَارٌ", "مِزْيَلٌ"], correct: 0 },
+            { question: "Alat untuk memasukkan pensil dan penggaris disebut...", options: ["حَقِيْبَةٌ", "مِقْلَمَةٌ", "طَبَاشِيْرٌ"], correct: 1 },
+            { question: "Pasangan yang BENAR antara bahasa Arab dan artinya adalah...", options: ["مِزْيَلٌ = Tas Sekolah", "فِرْجَارٌ = Jangka", "طَبَاشِيْرٌ = Kotak Pensil"], correct: 1 }
+        ];
 
-    <div class="error-message" id="errorMsg">
-      <h3>❌ Terjadi Kesalahan</h3>
-      <p id="errorText">Silakan coba lagi.</p>
-    </div>
-  </div>
-</div>
+        let studentData = { name: '', class: '' };
 
-<script>
-// ============================================================
-// KONFIGURASI - GANTI DENGAN URL WEB APP ANDA
-// ============================================================
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwQyQPIJcjw1k2wmfpOErsHoLrWh2jGU4dSZN1M81za4Rz_ZB7FcZCL0AZ20W9u-HeahA/exec';
+        function generateQuiz() {
+            const quizSection = document.getElementById('quizSection');
+            quizSection.innerHTML = '';
+            questions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                questionDiv.innerHTML = `
+                    <div class="question-text">${index + 1}. ${q.question}</div>
+                    <div class="options">
+                        ${q.options.map((opt, optIndex) => `
+                            <div class="option" onclick="selectOption(this, 'q${index}', ${optIndex})">
+                                <input type="radio" name="q${index}" id="q${index}_${optIndex}" value="${optIndex}">
+                                <label for="q${index}_${optIndex}">${String.fromCharCode(65 + optIndex)}. ${opt}</label>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                quizSection.appendChild(questionDiv);
+            });
+        }
 
-// Kunci jawaban PG
-const KUNCI_PG = { pg1: 'b', pg2: 'c', pg3: 'c', pg4: 'b', pg5: 'c' };
-const POIN_PER_PG = 10;
+        function selectOption(element, groupName, value) {
+            const allOptions = document.querySelectorAll(`input[name="${groupName}"]`);
+            allOptions.forEach(radio => {
+                radio.closest('.option').classList.remove('selected');
+            });
+            element.classList.add('selected');
+            const radio = element.querySelector('input[type="radio"]');
+            radio.checked = true;
+        }
 
-// Hitung skor PG real-time
-function hitungSkorPG() {
-  let skor = 0;
-  for (let i = 1; i <= 5; i++) {
-    const selected = document.querySelector(`input[name="pg${i}"]:checked`);
-    if (selected && selected.value === KUNCI_PG[`pg${i}`]) {
-      skor += POIN_PER_PG;
-    }
-  }
-  document.getElementById('pgScore').textContent = skor;
-  return skor;
-}
+        function startLearning() {
+            const name = document.getElementById('studentName').value.trim();
+            const className = document.getElementById('studentClass').value;
+            if (!name || !className) { alert('⚠️ Mohon isi nama dan kelas terlebih dahulu!'); return; }
+            
+            studentData.name = name;
+            studentData.class = className;
+            
+            document.getElementById('studentForm').classList.add('hidden');
+            document.getElementById('learningSection').classList.remove('hidden');
+            document.getElementById('materiSection').classList.remove('hidden');
+            document.getElementById('quizContainer').classList.add('hidden');
+            
+            generateQuiz();
+            window.scrollTo(0, 0);
+        }
 
-// Update preview setiap kali radio berubah
-document.querySelectorAll('input[type="radio"]').forEach(radio => {
-  radio.addEventListener('change', hitungSkorPG);
-});
+        function startQuiz() {
+            document.getElementById('materiSection').classList.add('hidden');
+            document.getElementById('quizContainer').classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
 
-// Handle submit form
-document.getElementById('quizForm').addEventListener('submit', function(e) {
-  e.preventDefault();
+        function submitQuiz() {
+            let correct = 0;
+            let answered = 0;
+            questions.forEach((q, index) => {
+                const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                if (selected) {
+                    answered++;
+                    if (parseInt(selected.value) === q.correct) correct++;
+                }
+            });
 
-  // Validasi
-  const nama = document.getElementById('nama').value.trim();
-  const kelas = document.getElementById('kelas').value.trim();
-  if (!nama || !kelas) {
-    alert('Mohon isi Nama dan Kelas!');
-    return;
-  }
+            if (answered < questions.length) {
+                if (!confirm(`️ Kamu baru menjawab ${answered} dari ${questions.length} soal. Yakin ingin mengumpulkan?`)) return;
+            }
 
-  // Cek semua PG terjawab
-  for (let i = 1; i <= 5; i++) {
-    if (!document.querySelector(`input[name="pg${i}"]:checked`)) {
-      alert(`Soal PG nomor ${i} belum dijawab!`);
-      return;
-    }
-  }
+            const score = (correct / questions.length) * 100;
+            document.getElementById('learningSection').classList.add('hidden');
+            document.getElementById('resultSection').style.display = 'block';
+            document.getElementById('scoreDisplay').textContent = score.toFixed(0);
 
-  const skorPG = hitungSkorPG();
+            let emoji, message;
+            if (score >= 90) { emoji = '🌟🌟'; message = 'Luar Biasa! Sempurna!'; }
+            else if (score >= 70) { emoji = '👏😊'; message = 'Bagus Sekali!'; }
+            else if (score >= 60) { emoji = '🙂👍'; message = 'Cukup Baik!'; }
+            else { emoji = '💪📚'; message = 'Terus Belajar Ya!'; }
 
-  // Kumpulkan data
-  const data = {
-    nama: nama,
-    kelas: kelas,
-    email: document.getElementById('email').value.trim(),
-    skorPG: skorPG,
-    maxPG: 50,
-    jawabanPG: {
-      pg1: document.querySelector('input[name="pg1"]:checked').value,
-      pg2: document.querySelector('input[name="pg2"]:checked').value,
-      pg3: document.querySelector('input[name="pg3"]:checked').value,
-      pg4: document.querySelector('input[name="pg4"]:checked').value,
-      pg5: document.querySelector('input[name="pg5"]:checked').value
-    },
-    essay1: document.querySelector('textarea[name="essay1"]').value.trim(),
-    essay2: document.querySelector('textarea[name="essay2"]').value.trim(),
-    pertanyaanEssay1: 'Terjemahkan kalimat: هِيَ لَيْلَى، هِيَ حَارِسَةٌ. هِيَ مِنْ سُوْرَكَرْتَا.',
-    pertanyaanEssay2: 'Buat kalimat perkenalan diri (Ahmad, petugas kebersihan, Bandung) dalam bahasa Arab.',
-    maxPoinEssay1: 25,
-    maxPoinEssay2: 25,
-    rubrik1: '100%: Terjemahan lengkap (Laila + penjaga/satpam + Surakarta). 60-80%: 2 dari 3 elemen benar. <60%: hanya 1 atau kurang.',
-    rubrik2: '100%: 3 kalimat benar (أَنَا أَحْمَدُ، أَنَا كَنَّاسٌ، أَنَا مِنْ بَانْدُونْج). 60-80%: 2 kalimat benar. <60%: 1 kalimat atau kurang.'
-  };
+            document.getElementById('resultEmoji').textContent = emoji;
+            document.getElementById('resultMessage').textContent = message;
+            document.getElementById('resultDetails').textContent = `Benar: ${correct} dari ${questions.length} soal`;
 
-  // Tampilkan loading
-  document.getElementById('quizForm').style.display = 'none';
-  document.getElementById('loading').classList.add('active');
+            sendToSpreadsheet(correct, score);
+            window.scrollTo(0, 0);
+        }
 
-  // Kirim ke Apps Script
-  fetch(SCRIPT_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data)
-  })
-  .then(() => {
-    document.getElementById('loading').classList.remove('active');
-    document.getElementById('successMsg').classList.add('active');
-  })
-  .catch(err => {
-    document.getElementById('loading').classList.remove('active');
-    document.getElementById('errorMsg').classList.add('active');
-    document.getElementById('errorText').textContent = 'Gagal mengirim: ' + err.message;
-  });
-});
-</script>
+        function getFormattedTimestamp() {
+            const now = new Date();
+            const pad = (n) => n.toString().padStart(2, '0');
+            return `${pad(now.getDate())}-${pad(now.getMonth()+1)}-${now.getFullYear()} ${now.getHours()}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+        }
+
+        function sendToSpreadsheet(correct, score) {
+            // GANTI URL INI DENGAN URL WEB APP DARI GOOGLE APPS SCRIPT
+            const SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+
+            const data = {
+                timestamp: getFormattedTimestamp(),
+                name: studentData.name,
+                class: studentData.class,
+                correct: correct,
+                total: questions.length,
+                score: score.toFixed(0)
+            };
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            }).catch(error => console.error('Error:', error));
+        }
+    </script>
 </body>
 </html>
