@@ -219,8 +219,8 @@
     <script>
         const appConfig = {
             // Informasi Utama Sekolah
-            schoolName: "Smp Muhammadiyah 001 melak", // Nama sekolah Anda
-            schoolTagline: "Beriman, Beramal, Berprestasi", // Slogan sekolah
+            schoolName: "Thursina International", // Nama sekolah Anda
+            schoolTagline: "Holistic & Balanced Education", // Slogan sekolah
             
             // Gambar dan Media (Ganti URL dengan link gambar Anda)
             // Anda bisa menggunakan URL gambar dari internet atau path lokal (cth: "assets/logo.png")
@@ -250,7 +250,33 @@
             
             feature3Title: "Alumni Tersebar",
             feature3Desc: "Lulusan kami telah diterima di berbagai Universitas terkemuka di dalam dan luar negeri."
+            
         };
+        
+        // --- TAMBAHAN KONFIGURASI DOKUMENTASI KEGIATAN ---
+        // Anda bisa menambah/mengurangi item dalam array galleryItems ini
+        appConfig.galleryItems = [
+            {
+                imageUrl: "https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=2070&auto=format&fit=crop",
+                title: "Kegiatan Belajar Mengajar",
+                description: "Suasana kelas interaktif dengan kurikulum global."
+            },
+            {
+                imageUrl: "https://images.unsplash.com/photo-1542856204-00101f558cef?q=80&w=2070&auto=format&fit=crop",
+                title: "Fasilitas Perpustakaan",
+                description: "Pusat literasi dengan koleksi buku terlengkap."
+            },
+            {
+                imageUrl: "https://images.unsplash.com/photo-1588702545922-e6ca975f9175?q=80&w=2070&auto=format&fit=crop",
+                title: "Praktikum Laboratorium",
+                description: "Fasilitas praktik sains modern berstandar internasional."
+            },
+            {
+                imageUrl: "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=80&w=2006&auto=format&fit=crop",
+                title: "Kegiatan Ekstrakurikuler",
+                description: "Pengembangan bakat non-akademik siswa."
+            }
+        ];
     </script>
     <!-- ========================================================================================= -->
     <!-- AKHIR PUSAT KONFIGURASI -->
@@ -271,6 +297,7 @@
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item"><a class="nav-link" href="#beranda">Beranda</a></li>
                     <li class="nav-item"><a class="nav-link" href="#informasi">Informasi Pendaftaran</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#dokumentasi">Dokumentasi</a></li>
                     <li class="nav-item"><a class="nav-link" href="#kontak">Kontak</a></li>
                     <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
                         <a href="#" class="nav-link btn-register-nav" data-config-href="registrationLink" target="_blank">Daftar Sekarang</a>
@@ -301,34 +328,17 @@
         </div>
     </section>
 
-    <!-- Keunggulan Section -->
-    <section id="informasi" class="py-5" style="background-color: var(--light-bg); margin-top: -50px; position: relative; z-index: 10;">
+    <!-- Dokumentasi Kegiatan Section -->
+    <section id="dokumentasi" class="py-5 bg-white">
         <div class="container">
-            <div class="row g-4">
-                <!-- Fitur 1 -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="info-box">
-                        <i class="fa-solid fa-globe info-icon"></i>
-                        <h4 data-config-text="feature1Title">Fitur 1</h4>
-                        <p data-config-text="feature1Desc">Deskripsi Fitur 1</p>
-                    </div>
-                </div>
-                <!-- Fitur 2 -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="info-box">
-                        <i class="fa-solid fa-building-columns info-icon"></i>
-                        <h4 data-config-text="feature2Title">Fitur 2</h4>
-                        <p data-config-text="feature2Desc">Deskripsi Fitur 2</p>
-                    </div>
-                </div>
-                <!-- Fitur 3 -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="info-box">
-                        <i class="fa-solid fa-graduation-cap info-icon"></i>
-                        <h4 data-config-text="feature3Title">Fitur 3</h4>
-                        <p data-config-text="feature3Desc">Deskripsi Fitur 3</p>
-                    </div>
-                </div>
+            <div class="section-title text-center mb-5">
+                <h3 style="color: var(--secondary-color); font-size: 1rem; text-transform: uppercase; letter-spacing: 2px;">Galeri Kami</h3>
+                <h2 style="font-size: 2.5rem; color: var(--primary-color);">Dokumentasi Kegiatan</h2>
+            </div>
+            
+            <!-- Tempat galeri akan di-render oleh JavaScript -->
+            <div id="galleryContainer" class="row g-4">
+                <!-- Konten akan dimasukkan di sini -->
             </div>
         </div>
     </section>
@@ -456,6 +466,27 @@
                     el.style.backgroundImage = `linear-gradient(rgba(12, 43, 75, 0.8), rgba(12, 43, 75, 0.6)), url('${appConfig[key]}')`;
                 }
             });
+
+            // 6. Render Dokumentasi Kegiatan (Gallery)
+            const galleryContainer = document.getElementById('galleryContainer');
+            if (galleryContainer && appConfig.galleryItems && appConfig.galleryItems.length > 0) {
+                appConfig.galleryItems.forEach(item => {
+                    const galleryItemHTML = `
+                        <div class="col-lg-3 col-md-6 mb-4">
+                            <div class="card h-100 border-0 shadow-sm" style="transition: transform 0.3s; border-radius: 15px; overflow: hidden;">
+                                <div style="height: 200px; overflow: hidden;">
+                                    <img src="${item.imageUrl}" class="card-img-top w-100 h-100" style="object-fit: cover; transition: transform 0.5s;" alt="${item.title}" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title" style="color: var(--primary-color); font-weight: 700; font-size: 1.1rem;">${item.title}</h5>
+                                    <p class="card-text text-muted" style="font-size: 0.9rem;">${item.description}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    galleryContainer.innerHTML += galleryItemHTML;
+                });
+            }
 
             // Set Tahun Copyright Otomatis
             document.getElementById('currentYear').textContent = new Date().getFullYear();
